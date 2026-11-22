@@ -63,6 +63,7 @@ const I18N = {
     mock_tab_search: 'Search',
     mock_tab_library: 'Library',
     mock_tab_downloads: 'Downloads',
+    mock_tab_player: 'Player',
     mock_tab_settings: 'Settings',
     mock_now_showing: 'NOW SHOWING',
     mock_featured_title: 'AL-RASHEED AFTER DARK',
@@ -73,6 +74,33 @@ const I18N = {
     mock_continue_title: 'Dune: Part Two',
     mock_continue_ep: '1080p · Arabic (Styled ASS)',
     mock_continue_left: '42 min left',
+    mock_search_placeholder: 'Search movies, series, cast or crew…',
+    mock_kind_all: 'All',
+    mock_kind_movies: 'Movies',
+    mock_kind_series: 'Series',
+    mock_kind_anime: 'Animation × Japanese',
+    mock_recent_searches: 'RECENT SEARCHES',
+    mock_clear_all: 'Clear all',
+    mock_browse_genres: 'BROWSE GENRES',
+    mock_genre_drama: 'Drama',
+    mock_genre_scifi: 'Sci-Fi',
+    mock_genre_anim: 'Animation',
+    mock_genre_thriller: 'Thriller',
+    mock_lib_favorites: 'Favorites (14)',
+    mock_lib_upnext: 'Up next · Season 2 · Episode 4 · 54m',
+    mock_lib_opp_sub: '2160p 4K · 28 min left',
+    mock_saved_favorites: 'IN FAVORITES',
+    mock_dl_usage: '4.2 GB used by Cinemakom',
+    mock_dl_active: 'DOWNLOADING',
+    mock_dl_ep_sub: 'Season 1 · Episode 1090',
+    mock_dl_speed: '1.3 GB of 2.0 GB · 8.4 MB/s · 1 min left',
+    mock_dl_on_device: 'ON THIS DEVICE',
+    mock_dl_series_count: '6 episodes · 3.6 GB · Styled ASS',
+    mock_player_audio: '2024 · Original Audio',
+    mock_player_sub_chip: 'Arabic (ASS)',
+    mock_skip_intro: 'Skip intro ⏭',
+    mock_next_ep: 'Next episode ›',
+    mock_autoswipe_hint: 'Auto-swipes every 5s',
     dl_eyebrow: 'DIRECT RELEASE PACKAGES',
     dl_title: 'DOWNLOAD CINEMAKOM',
     dl_subtitle: 'Choose your device below. No store telemetry, no ads, no account required.',
@@ -215,6 +243,7 @@ const I18N = {
     mock_tab_search: 'البحث',
     mock_tab_library: 'المكتبة',
     mock_tab_downloads: 'التنزيلات',
+    mock_tab_player: 'المشغل',
     mock_tab_settings: 'الإعدادات',
     mock_now_showing: 'يُعرض الآن',
     mock_featured_title: 'شارع الرشيد بعد الظلام',
@@ -225,6 +254,33 @@ const I18N = {
     mock_continue_title: 'Dune: Part Two',
     mock_continue_ep: '1080p · ترجمة عربية منسقة (ASS)',
     mock_continue_left: 'متبقي 42 د',
+    mock_search_placeholder: 'ابحث عن أفلام، مسلسلات، ممثلين أو مخرجين…',
+    mock_kind_all: 'الكل',
+    mock_kind_movies: 'أفلام',
+    mock_kind_series: 'مسلسلات',
+    mock_kind_anime: 'أنميشن × ياباني',
+    mock_recent_searches: 'عمليات البحث الأخيرة',
+    mock_clear_all: 'مسح الكل',
+    mock_browse_genres: 'تصفح التصنيفات',
+    mock_genre_drama: 'دراما',
+    mock_genre_scifi: 'خيال علمي',
+    mock_genre_anim: 'أنميشن',
+    mock_genre_thriller: 'إثارة وتشويق',
+    mock_lib_favorites: 'المفضلة (14)',
+    mock_lib_upnext: 'التالي · الموسم 2 · الحلقة 4 · 54 د',
+    mock_lib_opp_sub: '2160p 4K · متبقي 28 د',
+    mock_saved_favorites: 'في المفضلة',
+    mock_dl_usage: '4.2 غ.ب مستخدمة بواسطة سينماكم',
+    mock_dl_active: 'جاري التنزيل',
+    mock_dl_ep_sub: 'الموسم 1 · الحلقة 1090',
+    mock_dl_speed: '1.3 من 2.0 غ.ب · 8.4 م.ب/ث · متبقي 1 د',
+    mock_dl_on_device: 'على هذا الجهاز',
+    mock_dl_series_count: '6 حلقات · 3.6 غ.ب · ترجمة ASS',
+    mock_player_audio: '2024 · الصوت الأصلي',
+    mock_player_sub_chip: 'العربية (ASS)',
+    mock_skip_intro: 'تخطي المقدمة ⏭',
+    mock_next_ep: 'الحلقة التالية ›',
+    mock_autoswipe_hint: 'يتبدل تلقائياً كل 5 ثوانٍ',
     dl_eyebrow: 'حزم الإصدار المباشرة',
     dl_title: 'تحميل تطبيق سينماكم',
     dl_subtitle: 'اختر جهازك أدناه. بدون تتبع، بدون إعلانات، وبدون الحاجة لحساب.',
@@ -663,8 +719,104 @@ function syncHeaderScrollOffset() {
   const header = document.querySelector('.site-header');
   if (!header) return;
   const pos = window.getComputedStyle(header).position;
-  const offset = pos === 'sticky' || pos === 'fixed' ? header.offsetHeight + 8 : 16;
+  // Match exact header height (minus 1px so the section top divider merges with the header bottom border)
+  const offset = pos === 'sticky' || pos === 'fixed' ? Math.max(0, header.offsetHeight - 1) : 0;
   document.documentElement.style.setProperty('--header-offset', `${offset}px`);
+}
+
+/**
+ * Hero App Screens Carousel:
+ * Auto-swipes between Home, Search, Library, Downloads, and 4K Player every 5 seconds.
+ * Supports clicking top nav pills, clicking bottom Marquee bulb dots, and touch swiping.
+ */
+function initHeroStageCarousel() {
+  const container = document.getElementById('heroStageCarousel');
+  if (!container) return;
+
+  const slides = container.querySelectorAll('.stage-slide');
+  const topPills = container.querySelectorAll('.stage-pill[data-slide-to]');
+  const pagerDots = container.querySelectorAll('.stage-pager-dot[data-slide-to]');
+  if (!slides.length) return;
+
+  let currentIndex = 0;
+  let timerId = null;
+  const INTERVAL_MS = 5000;
+
+  function goToSlide(index) {
+    currentIndex = ((index % slides.length) + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === currentIndex);
+    });
+    topPills.forEach((pill, i) => {
+      const active = i === currentIndex;
+      pill.classList.toggle('active', active);
+      pill.setAttribute('aria-selected', String(active));
+    });
+    pagerDots.forEach((dot, i) => {
+      dot.classList.toggle('lit', i === currentIndex);
+    });
+  }
+
+  function startTimer() {
+    stopTimer();
+    timerId = setInterval(() => {
+      goToSlide(currentIndex + 1);
+    }, INTERVAL_MS);
+  }
+
+  function stopTimer() {
+    if (timerId) {
+      clearInterval(timerId);
+      timerId = null;
+    }
+  }
+
+  // Click on top pills or bottom bulb pager dots
+  [...topPills, ...pagerDots].forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = Number(btn.getAttribute('data-slide-to'));
+      if (!Number.isNaN(target)) {
+        goToSlide(target);
+        startTimer();
+      }
+    });
+  });
+
+  // Pause while hovering so the user can inspect a screen
+  container.addEventListener('mouseenter', stopTimer);
+  container.addEventListener('mouseleave', startTimer);
+
+  // Touch swipe support (left/right drag)
+  let touchStartX = null;
+  container.addEventListener(
+    'touchstart',
+    (e) => {
+      if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        stopTimer();
+      }
+    },
+    { passive: true }
+  );
+
+  container.addEventListener(
+    'touchend',
+    (e) => {
+      if (touchStartX !== null && e.changedTouches.length === 1) {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 35) {
+          const isRtl = document.documentElement.dir === 'rtl';
+          const step = (dx < 0 && !isRtl) || (dx > 0 && isRtl) ? 1 : -1;
+          goToSlide(currentIndex + step);
+        }
+      }
+      touchStartX = null;
+      startTimer();
+    },
+    { passive: true }
+  );
+
+  startTimer();
 }
 
 /**
@@ -676,6 +828,7 @@ document.addEventListener('DOMContentLoaded', () => {
   applyLanguage(state.lang);
   highlightDetectedPlatformCard();
   startMarqueeBulbAnimation();
+  initHeroStageCarousel();
   syncHeaderScrollOffset();
   window.addEventListener('resize', syncHeaderScrollOffset);
   if ('ResizeObserver' in window) {

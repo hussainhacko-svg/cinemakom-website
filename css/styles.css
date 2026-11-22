@@ -75,8 +75,8 @@
   /* Motion: 150ms ease-out for state changes (DESIGN.md §3) */
   --ease-state: 150ms ease-out;
 
-  /* Sticky header offset for anchor links (#downloads, #preview, #features, #install-guide) */
-  --header-offset: 88px;
+  /* Sticky header height for anchor links (#downloads, #preview, #features, #install-guide) */
+  --header-offset: 72px;
 }
 
 /* Reset & Base */
@@ -90,7 +90,6 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--header-offset, 88px);
   background-color: var(--night);
   color: var(--cream);
   font-family: var(--font-ui-latin), var(--font-ui-arabic);
@@ -100,7 +99,7 @@ html {
 }
 
 section[id] {
-  scroll-margin-top: var(--header-offset, 88px);
+  scroll-margin-top: var(--header-offset, 72px);
 }
 
 html[dir="rtl"] {
@@ -612,14 +611,370 @@ html[dir="rtl"] .brand-arabic {
   font-size: 11px;
   font-weight: 500;
   color: var(--dust);
-  padding: 4px 10px;
+  padding: 5px 10px;
   border-radius: var(--radius-pill);
+  transition: background-color var(--ease-state), color var(--ease-state);
+}
+
+.stage-pill:hover {
+  color: var(--cream);
+  background-color: var(--night);
 }
 
 .stage-pill.active {
   background-color: var(--booth-raised);
   color: var(--bulb);
   font-weight: 600;
+}
+
+/* Carousel Slide Container — 1-cell CSS Grid locks all 5 slides to the exact same height so nothing ever shifts */
+.stage-slides-viewport {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 100%;
+  align-items: stretch;
+}
+
+.stage-slide {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(14px);
+  transition: opacity 250ms ease-out, transform 250ms ease-out, visibility 250ms;
+}
+
+html[dir="rtl"] .stage-slide {
+  transform: translateX(-14px);
+}
+
+.stage-slide.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+/* Screen 1: Search & Genres Styles */
+.stage-search-bar {
+  background-color: var(--night);
+  border: 1.5px solid var(--bulb);
+  border-radius: var(--radius-pill);
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--bulb);
+}
+
+.stage-search-query {
+  font-size: 12.5px;
+  color: var(--cream-soft);
+  flex: 1;
+  min-width: 0;
+}
+
+.stage-search-clear {
+  font-size: 12px;
+  color: var(--dust);
+}
+
+.stage-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.stage-recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stage-recent-row {
+  background-color: var(--night);
+  border: 1px solid var(--velvet);
+  border-radius: var(--radius-thumb);
+  padding: 7px 12px;
+  font-size: 12px;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stage-recent-x {
+  color: var(--dust);
+  font-size: 11px;
+}
+
+.stage-genre-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.stage-genre-tile {
+  background-color: var(--night);
+  border: 1px solid var(--velvet);
+  border-radius: var(--radius-card);
+  padding: 12px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+}
+
+/* Screen 2: Library Styles */
+.stage-seg-track {
+  background-color: var(--night);
+  border: 1px solid var(--velvet);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  display: flex;
+  gap: 4px;
+}
+
+.stage-seg-item {
+  flex: 1;
+  text-align: center;
+  padding: 6px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--dust);
+}
+
+.stage-seg-item.active {
+  background-color: var(--booth-raised);
+  color: var(--cream);
+  font-weight: 600;
+}
+
+.stage-stack-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bulb-text {
+  color: var(--bulb) !important;
+  font-weight: 600;
+}
+
+.stage-mini-poster-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.stage-mini-poster {
+  aspect-ratio: 2 / 2.4;
+  background-color: var(--night);
+  border: 1px solid var(--velvet);
+  border-radius: var(--radius-poster);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.stage-mini-poster-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cream);
+  margin-top: auto;
+}
+
+/* Screen 3: Downloads Styles */
+.stage-dl-usage {
+  font-size: 12px;
+  color: var(--dust);
+}
+
+.stage-offline-row {
+  background-color: var(--night);
+  border: 1px solid var(--velvet);
+  border-radius: var(--radius-card);
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Screen 4: 4K Player Styles */
+.stage-player-box {
+  background-color: var(--screen);
+  border: 1px solid var(--velvet-strong);
+  border-radius: var(--radius-card);
+  padding: 14px;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.stage-player-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.stage-player-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stage-player-back {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--booth);
+  border: 1px solid var(--velvet);
+  color: var(--cream);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.stage-player-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.stage-player-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-block: 6px;
+}
+
+.stage-seek-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--booth);
+  border: 1px solid var(--velvet);
+  color: var(--cream);
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage-big-play {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--bulb-fill);
+  color: var(--on-bulb);
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage-player-subtitle {
+  text-align: center;
+  font-family: var(--font-ui-arabic);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--cream);
+  background-color: rgba(21, 16, 12, 0.85);
+  border: 1px solid var(--velvet);
+  padding: 4px 12px;
+  border-radius: var(--radius-thumb);
+  align-self: center;
+}
+
+.stage-player-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stage-player-skip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.stage-skip-pill {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--velvet-strong);
+  background-color: var(--booth);
+  color: var(--cream);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.stage-next-ep {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--bulb);
+}
+
+.stage-player-times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--dust);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Carousel Bulb Pager Footer */
+.stage-carousel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--velvet);
+}
+
+.stage-bulb-pager {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stage-pager-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--velvet-strong);
+  transition: background-color 200ms ease-out, transform 200ms ease-out;
+}
+
+.stage-pager-dot.lit {
+  background-color: var(--bulb);
+  transform: scale(1.25);
+}
+
+.stage-swipe-hint {
+  font-size: 11px;
+  color: var(--dust);
 }
 
 .stage-banner {
@@ -819,7 +1174,7 @@ html[dir="rtl"] .stage-section-title {
    ========================================================================== */
 
 .downloads-section {
-  padding-block: clamp(32px, 6vh, 56px);
+  padding-block: clamp(24px, 3.8vh, 38px) clamp(32px, 5vh, 52px);
   border-bottom: 1px solid var(--velvet);
 }
 
@@ -828,8 +1183,8 @@ html[dir="rtl"] .stage-section-title {
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  gap: clamp(14px, 2.5vw, 24px);
-  margin-bottom: clamp(18px, 3vh, 24px);
+  gap: 12px 20px;
+  margin-bottom: 14px;
 }
 
 /* Segmented Control (DESIGN.md §5: booth track, pill, padding 4; selected = boothRaised pill) */
@@ -845,7 +1200,7 @@ html[dir="rtl"] .stage-section-title {
 }
 
 .segment-btn {
-  padding: 8px clamp(10px, 1.5vw, 16px);
+  padding: 6px clamp(10px, 1.4vw, 15px);
   border-radius: var(--radius-pill);
   font-size: clamp(12px, 1.2vw, 13px);
   font-weight: 500;
@@ -870,13 +1225,13 @@ html[dir="rtl"] .stage-section-title {
   background-color: var(--booth);
   border: 1px solid var(--velvet);
   border-radius: var(--radius-card);
-  padding: 12px 16px;
+  padding: 10px 14px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-m);
-  margin-bottom: var(--space-xxl);
+  gap: 8px 12px;
+  margin-bottom: 14px;
 }
 
 .release-info-start {
@@ -919,48 +1274,203 @@ html[dir="rtl"] .stage-section-title {
   text-decoration: underline;
 }
 
-/* Platform Cards Grid — scales smoothly across all screen ratios */
+/* Platform Cards Grid — Perforated Cinema Ticket Stub Cards */
 .platform-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-  gap: clamp(14px, 2vw, 20px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 225px), 1fr));
+  gap: 14px;
 }
 
 .platform-card {
+  --ticket-border: var(--velvet);
   background-color: var(--booth);
-  border: 1px solid var(--velvet);
+  border: 1px solid var(--ticket-border);
   border-radius: var(--radius-card);
-  padding: clamp(16px, 2.5vw, 24px);
+  padding: 0;
   display: flex;
   flex-direction: column;
   min-width: 0;
+  position: relative;
+  overflow: hidden;
   transition: border-color var(--ease-state), background-color var(--ease-state);
 }
 
 .platform-card:hover {
-  border-color: var(--velvet-strong);
+  --ticket-border: var(--bulb);
 }
 
 .platform-card.detected-card {
-  border: 2px solid var(--bulb);
+  --ticket-border: var(--bulb);
+  border-width: 1.5px;
 }
 
 .platform-card[hidden] {
   display: none;
 }
 
+.ticket-body {
+  padding: 14px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Cinema Ticket Perforation Divider (Semicircular Side Notches + 7 Perforation Dots) */
+.ticket-perforation {
+  position: relative;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 18px;
+  user-select: none;
+}
+
+.ticket-notch {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--night);
+  border: 1.5px solid var(--ticket-border);
+  transform: translateY(-50%);
+  transition: border-color var(--ease-state);
+  z-index: 2;
+}
+
+.ticket-notch.notch-left {
+  left: -11px;
+}
+
+.ticket-notch.notch-right {
+  right: -11px;
+}
+
+.perf-line {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.perf-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--night);
+  border: 1px solid var(--velvet-strong);
+  flex-shrink: 0;
+  transition: background-color var(--ease-state), border-color var(--ease-state), transform var(--ease-state);
+}
+
+.platform-card:hover .perf-dot,
+.platform-card.detected-card .perf-dot {
+  background-color: var(--bulb);
+  border-color: var(--bulb);
+  transform: scale(1.15);
+}
+
+.ticket-serial {
+  font-family: var(--font-display-latin);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--dust-dim);
+  padding-inline: 4px;
+  transition: color var(--ease-state);
+}
+
+.platform-card:hover .ticket-serial,
+.platform-card.detected-card .ticket-serial {
+  color: var(--bulb);
+}
+
+/* Tear-Off Ticket Stub Footer */
+.card-footer {
+  margin-top: auto;
+  padding: 10px 16px 14px;
+  background-color: var(--booth-raised);
+  border-top: 1px dashed var(--velvet);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  overflow: hidden;
+  transition: background-color var(--ease-state), border-color var(--ease-state);
+}
+
+.platform-card:hover .card-footer {
+  border-top-color: var(--bulb);
+}
+
+.stub-kaf {
+  position: absolute;
+  inset-inline-end: 8px;
+  bottom: -10px;
+  font-family: var(--font-display-arabic);
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--velvet);
+  opacity: 0.45;
+  pointer-events: none;
+  user-select: none;
+  transition: color var(--ease-state), opacity var(--ease-state);
+}
+
+.platform-card:hover .stub-kaf,
+.platform-card.detected-card .stub-kaf {
+  color: var(--velvet-strong);
+  opacity: 0.7;
+}
+
+.btn-download-card {
+  position: relative;
+  z-index: 1;
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background-color: var(--booth);
+  border: 1px solid var(--velvet-strong);
+  color: var(--cream);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color var(--ease-state), border-color var(--ease-state), color var(--ease-state);
+}
+
 .card-top {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: var(--space-l);
+  margin-bottom: 8px;
+}
+
+.card-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1 1 140px;
+}
+
+.card-title-group {
+  min-width: 0;
+  flex: 1;
 }
 
 .platform-icon-wrap {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background-color: var(--booth-raised);
   border: 1px solid var(--velvet);
@@ -972,23 +1482,23 @@ html[dir="rtl"] .stage-section-title {
 }
 
 .platform-icon-wrap svg {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
 }
 
 .card-badges {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .recommended-tag {
   background-color: var(--bulb-fill);
   color: var(--on-bulb);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: var(--radius-pill);
 }
 
@@ -996,41 +1506,41 @@ html[dir="rtl"] .stage-section-title {
   background-color: var(--night);
   border: 1px solid var(--velvet);
   color: var(--dust);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: var(--radius-pill);
 }
 
 .platform-name {
   font-family: var(--font-display-latin), var(--font-display-arabic);
-  font-size: clamp(22px, 2.5vw, 26px);
+  font-size: clamp(19px, 2vw, 22px);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.05;
   letter-spacing: 0.02em;
   color: var(--cream);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   overflow-wrap: break-word;
 }
 
 html[dir="rtl"] .platform-name {
   font-family: var(--font-display-arabic), var(--font-display-latin);
   letter-spacing: 0;
-  font-size: clamp(19px, 2.2vw, 22px);
+  font-size: clamp(17px, 1.8vw, 20px);
 }
 
 .platform-meta {
-  font-size: 12px;
+  font-size: 11px;
+  line-height: 1.3;
   color: var(--bulb);
   font-weight: 500;
-  margin-bottom: var(--space-m);
 }
 
 .platform-desc {
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 12.5px;
+  line-height: 1.42;
   color: var(--cream-soft);
-  margin-bottom: var(--space-l);
+  margin-bottom: 10px;
   flex: 1;
 }
 
@@ -1038,18 +1548,18 @@ html[dir="rtl"] .platform-name {
 .arch-selector {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: var(--space-xl);
+  gap: 6px;
+  margin-bottom: 10px;
 }
 
 .filter-chip {
-  min-height: 36px;
-  padding: 6px 12px;
-  border-radius: 18px;
+  min-height: 30px;
+  padding: 4px 10px;
+  border-radius: 14px;
   background-color: transparent;
   border: 1px solid var(--velvet);
   color: var(--dust);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   display: inline-flex;
   flex-direction: column;
@@ -1060,7 +1570,7 @@ html[dir="rtl"] .platform-name {
 }
 
 .filter-chip small {
-  font-size: 10px;
+  font-size: 9.5px;
   color: var(--dust-dim);
 }
 
@@ -1081,42 +1591,17 @@ html[dir="rtl"] .platform-name {
 }
 
 .static-chip {
-  min-height: 34px;
-  padding: 6px 12px;
+  min-height: 28px;
+  padding: 4px 10px;
   border-radius: var(--radius-pill);
   background-color: var(--night);
   border: 1px solid var(--velvet);
   color: var(--dust);
-  font-size: 12px;
+  font-size: 11px;
   display: inline-flex;
   align-items: center;
   max-width: 100%;
   overflow-wrap: anywhere;
-}
-
-.card-footer {
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.btn-download-card {
-  min-height: 48px;
-  padding: 10px 16px;
-  border-radius: var(--radius-pill);
-  background-color: var(--booth-raised);
-  border: 1px solid var(--velvet-strong);
-  color: var(--cream);
-  font-size: clamp(13px, 1.3vw, 14px);
-  font-weight: 600;
-  text-align: center;
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: background-color var(--ease-state), border-color var(--ease-state), color var(--ease-state);
 }
 
 .btn-download-card:hover,
@@ -1133,6 +1618,8 @@ html[dir="rtl"] .platform-name {
 }
 
 .file-caption {
+  position: relative;
+  z-index: 1;
   font-size: 11px;
   color: var(--dust);
   text-align: center;
@@ -1147,7 +1634,7 @@ html[dir="rtl"] .platform-name {
    ========================================================================== */
 
 .preview-section {
-  padding-block: clamp(32px, 6vh, 56px);
+  padding-block: clamp(24px, 3.8vh, 38px) clamp(32px, 5vh, 52px);
   border-bottom: 1px solid var(--velvet);
 }
 
@@ -1527,7 +2014,7 @@ html[dir="rtl"] .platform-name {
    ========================================================================== */
 
 .features-section {
-  padding-block: clamp(32px, 6vh, 56px);
+  padding-block: clamp(24px, 3.8vh, 38px) clamp(32px, 5vh, 52px);
   border-bottom: 1px solid var(--velvet);
 }
 
@@ -1573,7 +2060,7 @@ html[dir="rtl"] .platform-name {
    ========================================================================== */
 
 .install-section {
-  padding-block: clamp(32px, 6vh, 56px);
+  padding-block: clamp(24px, 3.8vh, 38px) clamp(32px, 5vh, 52px);
 }
 
 .install-grid {

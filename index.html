@@ -104,9 +104,9 @@
           </p>
         </div>
 
-        <!-- Hero Interactive Marquee Preview Card -->
+        <!-- Hero Interactive Marquee Preview Card (5-Screen Auto-Swipe Carousel, 5s interval) -->
         <div class="hero-visual">
-          <div class="marquee-stage-card">
+          <div class="marquee-stage-card" id="heroStageCarousel">
             <div class="stage-top-bar">
               <div class="stage-lockup">
                 <svg class="stage-mark" viewBox="0 0 100 100" aria-hidden="true">
@@ -114,57 +114,269 @@
                 </svg>
                 <span class="stage-brand-text">CINEMAKOM</span>
               </div>
-              <div class="stage-nav-pills">
-                <span class="stage-pill active" data-i18n="mock_tab_home">Home</span>
-                <span class="stage-pill" data-i18n="mock_tab_search">Search</span>
-                <span class="stage-pill" data-i18n="mock_tab_library">Library</span>
-                <span class="stage-pill" data-i18n="mock_tab_downloads">Downloads</span>
+              <div class="stage-nav-pills" role="tablist" aria-label="App screen slides">
+                <button type="button" class="stage-pill active" data-slide-to="0" role="tab" aria-selected="true" data-i18n="mock_tab_home">Home</button>
+                <button type="button" class="stage-pill" data-slide-to="1" role="tab" aria-selected="false" data-i18n="mock_tab_search">Search</button>
+                <button type="button" class="stage-pill" data-slide-to="2" role="tab" aria-selected="false" data-i18n="mock_tab_library">Library</button>
+                <button type="button" class="stage-pill" data-slide-to="3" role="tab" aria-selected="false" data-i18n="mock_tab_downloads">Downloads</button>
+                <button type="button" class="stage-pill" data-slide-to="4" role="tab" aria-selected="false" data-i18n="mock_tab_player">Player</button>
               </div>
             </div>
 
-            <!-- Banner Art Mock with 2.7:1 Cinema Ratio -->
-            <div class="stage-banner">
-              <div class="stage-banner-art">
-                <span class="badge-4k">4K</span>
-                <div class="stage-ticket-watermark" aria-hidden="true">ك</div>
-              </div>
-              <div class="stage-banner-info">
-                <span class="eyebrow" data-i18n="mock_now_showing">NOW SHOWING</span>
-                <h2 class="stage-movie-title" data-i18n="mock_featured_title">AL-RASHEED AFTER DARK</h2>
-                <p class="stage-movie-meta" data-i18n="mock_featured_meta">2026 · Drama · 2h 34m</p>
-                <div class="stage-banner-actions">
-                  <span class="stage-play-btn">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                    <span data-i18n="mock_play">Play</span>
-                  </span>
-                  <span class="stage-icon-btn" aria-label="Bookmark">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-                  </span>
-                </div>
-              </div>
-            </div>
+            <!-- Carousel Viewport -->
+            <div class="stage-slides-viewport" id="stageSlidesViewport">
 
-            <!-- Continue Watching Row Mock (DESIGN.md §5) -->
-            <div class="stage-section">
-              <div class="stage-section-header">
-                <span class="stage-section-title" data-i18n="mock_continue_watching">CONTINUE WATCHING</span>
-                <span class="stage-see-all" data-i18n="mock_see_all">See all</span>
-              </div>
-              <div class="continue-card-mock">
-                <div class="continue-poster-thumb">
-                  <span class="badge-4k-mini">4K</span>
-                </div>
-                <div class="continue-details">
-                  <div class="continue-title" data-i18n="mock_continue_title">Dune: Part Two</div>
-                  <div class="continue-sub" data-i18n="mock_continue_ep">1080p · Arabic (Styled ASS)</div>
-                  <div class="progress-track">
-                    <div class="progress-fill" style="width: 68%"></div>
+              <!-- Screen 0: HOME (Hero Banner + Continue Watching) -->
+              <div class="stage-slide active" data-slide-index="0">
+                <div class="stage-banner">
+                  <div class="stage-banner-art">
+                    <span class="badge-4k">4K</span>
+                    <div class="stage-ticket-watermark" aria-hidden="true">ك</div>
                   </div>
-                  <div class="continue-time" data-i18n="mock_continue_left">42 min left</div>
+                  <div class="stage-banner-info">
+                    <span class="eyebrow" data-i18n="mock_now_showing">NOW SHOWING</span>
+                    <h2 class="stage-movie-title" data-i18n="mock_featured_title">AL-RASHEED AFTER DARK</h2>
+                    <p class="stage-movie-meta" data-i18n="mock_featured_meta">2026 · Drama · 2h 34m</p>
+                    <div class="stage-banner-actions">
+                      <span class="stage-play-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        <span data-i18n="mock_play">Play</span>
+                      </span>
+                      <span class="stage-icon-btn" aria-label="Bookmark">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <div class="continue-play-circle">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+
+                <div class="stage-section">
+                  <div class="stage-section-header">
+                    <span class="stage-section-title" data-i18n="mock_continue_watching">CONTINUE WATCHING</span>
+                    <span class="stage-see-all" data-i18n="mock_see_all">See all</span>
+                  </div>
+                  <div class="continue-card-mock">
+                    <div class="continue-poster-thumb">
+                      <span class="badge-4k-mini">4K</span>
+                    </div>
+                    <div class="continue-details">
+                      <div class="continue-title" data-i18n="mock_continue_title">Dune: Part Two</div>
+                      <div class="continue-sub" data-i18n="mock_continue_ep">1080p · Arabic (Styled ASS)</div>
+                      <div class="progress-track">
+                        <div class="progress-fill" style="width: 68%"></div>
+                      </div>
+                      <div class="continue-time" data-i18n="mock_continue_left">42 min left</div>
+                    </div>
+                    <div class="continue-play-circle">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </div>
+                  </div>
                 </div>
+              </div>
+
+              <!-- Screen 1: SEARCH & GENRES (DESIGN.md §8 Search) -->
+              <div class="stage-slide" data-slide-index="1">
+                <div class="stage-search-bar">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span class="stage-search-query" data-i18n="mock_search_placeholder">Search movies, series, cast or crew…</span>
+                  <span class="stage-search-clear">✕</span>
+                </div>
+
+                <div class="stage-chip-row">
+                  <span class="mock-chip active" data-i18n="mock_kind_all">All</span>
+                  <span class="mock-chip" data-i18n="mock_kind_movies">Movies</span>
+                  <span class="mock-chip" data-i18n="mock_kind_series">Series</span>
+                  <span class="mock-chip" data-i18n="mock_kind_anime">Animation × Japanese</span>
+                </div>
+
+                <div class="stage-section">
+                  <div class="stage-section-header">
+                    <span class="stage-section-title" data-i18n="mock_recent_searches">RECENT SEARCHES</span>
+                    <span class="stage-see-all" data-i18n="mock_clear_all">Clear all</span>
+                  </div>
+                  <div class="stage-recent-list">
+                    <div class="stage-recent-row">
+                      <span>↺ Christopher Nolan</span>
+                      <span class="stage-recent-x">✕</span>
+                    </div>
+                    <div class="stage-recent-row">
+                      <span>↺ Attack on Titan</span>
+                      <span class="stage-recent-x">✕</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="stage-section">
+                  <div class="stage-section-header">
+                    <span class="stage-section-title" data-i18n="mock_browse_genres">BROWSE GENRES</span>
+                  </div>
+                  <div class="stage-genre-grid">
+                    <div class="stage-genre-tile" data-i18n="mock_genre_drama">Drama</div>
+                    <div class="stage-genre-tile" data-i18n="mock_genre_scifi">Sci-Fi</div>
+                    <div class="stage-genre-tile" data-i18n="mock_genre_anim">Animation</div>
+                    <div class="stage-genre-tile" data-i18n="mock_genre_thriller">Thriller</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Screen 2: LIBRARY (Continue Watching & Favorites Shelf, DESIGN.md §8 Library) -->
+              <div class="stage-slide" data-slide-index="2">
+                <div class="stage-seg-track">
+                  <span class="stage-seg-item active" data-i18n="mock_continue_watching">Continue watching</span>
+                  <span class="stage-seg-item" data-i18n="mock_lib_favorites">Favorites (14)</span>
+                </div>
+
+                <div class="stage-stack-list">
+                  <div class="continue-card-mock">
+                    <div class="continue-poster-thumb">
+                      <span class="badge-4k-mini">4K</span>
+                    </div>
+                    <div class="continue-details">
+                      <div class="continue-title">Severance</div>
+                      <div class="continue-sub bulb-text" data-i18n="mock_lib_upnext">Up next · Season 2 · Episode 4 · 54m</div>
+                    </div>
+                    <div class="continue-play-circle">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </div>
+                  </div>
+
+                  <div class="continue-card-mock">
+                    <div class="continue-poster-thumb">
+                      <span class="badge-4k-mini">4K</span>
+                    </div>
+                    <div class="continue-details">
+                      <div class="continue-title">Oppenheimer</div>
+                      <div class="continue-sub" data-i18n="mock_lib_opp_sub">2160p 4K · 28 min left</div>
+                      <div class="progress-track">
+                        <div class="progress-fill" style="width: 82%"></div>
+                      </div>
+                    </div>
+                    <div class="continue-play-circle">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="stage-section">
+                  <div class="stage-section-header">
+                    <span class="stage-section-title" data-i18n="mock_saved_favorites">IN FAVORITES</span>
+                  </div>
+                  <div class="stage-mini-poster-grid">
+                    <div class="stage-mini-poster">
+                      <span class="badge-4k-mini">4K</span>
+                      <span class="stage-mini-poster-name">Interstellar</span>
+                    </div>
+                    <div class="stage-mini-poster">
+                      <span class="badge-4k-mini">4K</span>
+                      <span class="stage-mini-poster-name">Breaking Bad</span>
+                    </div>
+                    <div class="stage-mini-poster">
+                      <span class="stage-mini-poster-name">Spirited Away</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Screen 3: DOWNLOADS (Active Queue + Offline Storage, DESIGN.md §8 Downloads) -->
+              <div class="stage-slide" data-slide-index="3">
+                <div class="stage-dl-usage" data-i18n="mock_dl_usage">4.2 GB used by Cinemakom</div>
+
+                <div class="stage-section">
+                  <div class="stage-section-header">
+                    <span class="stage-section-title" data-i18n="mock_dl_active">DOWNLOADING</span>
+                  </div>
+                  <div class="continue-card-mock">
+                    <div class="continue-poster-thumb">
+                      <span class="badge-4k-mini">1080p</span>
+                    </div>
+                    <div class="continue-details">
+                      <div class="continue-title">One Piece</div>
+                      <div class="continue-sub" data-i18n="mock_dl_ep_sub">Season 1 · Episode 1090</div>
+                      <div class="progress-track">
+                        <div class="progress-fill" style="width: 64%"></div>
+                      </div>
+                      <div class="continue-time" data-i18n="mock_dl_speed">1.3 GB of 2.0 GB · 8.4 MB/s · 1 min left</div>
+                    </div>
+                    <div class="continue-play-circle">❚❚</div>
+                  </div>
+                </div>
+
+                <div class="stage-section">
+                  <div class="stage-section-header">
+                    <span class="stage-section-title" data-i18n="mock_dl_on_device">ON THIS DEVICE</span>
+                  </div>
+                  <div class="stage-stack-list">
+                    <div class="stage-offline-row">
+                      <div>
+                        <div class="continue-title">The Batman</div>
+                        <div class="continue-time">2160p 4K · 5.4 GB · Arabic + English SRT</div>
+                      </div>
+                      <span class="bulb-text">▶</span>
+                    </div>
+                    <div class="stage-offline-row">
+                      <div>
+                        <div class="continue-title">Attack on Titan</div>
+                        <div class="continue-time" data-i18n="mock_dl_series_count">6 episodes · 3.6 GB · Styled ASS</div>
+                      </div>
+                      <span class="bulb-text">›</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Screen 4: 4K PLAYER (Controls Overlay, Skip Intro & Seek Bar, DESIGN.md §8 Player) -->
+              <div class="stage-slide" data-slide-index="4">
+                <div class="stage-player-box">
+                  <div class="stage-player-top">
+                    <div class="stage-player-title-wrap">
+                      <span class="stage-player-back">←</span>
+                      <div>
+                        <div class="continue-title">Dune: Part Two</div>
+                        <div class="continue-time" data-i18n="mock_player_audio">2024 · Original Audio</div>
+                      </div>
+                    </div>
+                    <div class="stage-player-chips">
+                      <span class="badge-4k">4K 2160p</span>
+                      <span class="format-pill" data-i18n="mock_player_sub_chip">Arabic (ASS)</span>
+                      <span class="format-pill">1.0×</span>
+                    </div>
+                  </div>
+
+                  <div class="stage-player-center">
+                    <span class="stage-seek-circle">-10s</span>
+                    <span class="stage-big-play">▶</span>
+                    <span class="stage-seek-circle">+10s</span>
+                  </div>
+
+                  <div class="stage-player-subtitle" dir="rtl">
+                    «لا يجب أن أخاف، الخوف هو قاتل العقل»
+                  </div>
+
+                  <div class="stage-player-bottom">
+                    <div class="stage-player-skip-row">
+                      <span class="stage-skip-pill" data-i18n="mock_skip_intro">Skip intro ⏭</span>
+                      <span class="stage-next-ep" data-i18n="mock_next_ep">Next episode ›</span>
+                    </div>
+                    <div class="progress-track">
+                      <div class="progress-fill" style="width: 71%"></div>
+                    </div>
+                    <div class="stage-player-times" dir="ltr">
+                      <span>01:48:12</span>
+                      <span>-00:37:48</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Marquee Bulb Pager Footer -->
+            <div class="stage-carousel-footer">
+              <div class="stage-bulb-pager" role="tablist" aria-label="Screen pager">
+                <button type="button" class="stage-pager-dot lit" data-slide-to="0" aria-label="Home Screen"></button>
+                <button type="button" class="stage-pager-dot" data-slide-to="1" aria-label="Search Screen"></button>
+                <button type="button" class="stage-pager-dot" data-slide-to="2" aria-label="Library Screen"></button>
+                <button type="button" class="stage-pager-dot" data-slide-to="3" aria-label="Downloads Screen"></button>
+                <button type="button" class="stage-pager-dot" data-slide-to="4" aria-label="Player Screen"></button>
               </div>
             </div>
           </div>
@@ -211,47 +423,70 @@
           </div>
         </div>
 
-        <!-- Platform Download Cards Grid -->
+        <!-- Platform Download Cards Grid (Perforated Cinema Ticket Cards) -->
         <div class="platform-grid" id="platformGrid">
 
           <!-- 1. Android Phone & Tablet -->
           <article class="platform-card" data-category="mobile" data-os="android">
-            <div class="card-top">
-              <div class="platform-icon-wrap" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-                  <line x1="12" y1="18" x2="12.01" y2="18"/>
-                </svg>
+            <div class="ticket-body">
+              <div class="card-top">
+                <div class="card-identity">
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                      <line x1="12" y1="18" x2="12.01" y2="18"/>
+                    </svg>
+                  </div>
+                  <div class="card-title-group">
+                    <h3 class="platform-name" data-i18n="plat_android_title">Android</h3>
+                    <p class="platform-meta" data-i18n="plat_android_meta">Android 8.0+ · ExoPlayer 4K · 120Hz High Refresh</p>
+                  </div>
+                </div>
+                <div class="card-badges">
+                  <span class="recommended-tag" id="badge-android" hidden data-i18n="tag_detected">Detected</span>
+                  <span class="format-pill">APK</span>
+                </div>
               </div>
-              <div class="card-badges">
-                <span class="recommended-tag" id="badge-android" hidden data-i18n="tag_detected">Detected</span>
-                <span class="format-pill">APK</span>
+
+              <p class="platform-desc" data-i18n="plat_android_desc">
+                Split-per-ABI release APKs with hardware-accelerated 4K playback, background downloads with pause/resume, and brightness/volume gestures.
+              </p>
+
+              <!-- Architecture Filter Chips (DESIGN.md §5 Filter Chips) -->
+              <div class="arch-selector" role="radiogroup" aria-label="Android Architecture">
+                <button type="button" class="filter-chip active" data-arch="arm64-v8a" data-target="android">
+                  <span>ARM64 (v8a)</span>
+                  <small data-i18n="arch_modern">Recommended</small>
+                </button>
+                <button type="button" class="filter-chip" data-arch="armeabi-v7a" data-target="android">
+                  <span>ARM32 (v7a)</span>
+                  <small data-i18n="arch_older">Older phones</small>
+                </button>
+                <button type="button" class="filter-chip" data-arch="x86_64" data-target="android">
+                  <span>x86_64</span>
+                  <small data-i18n="arch_emulator">Chromebook</small>
+                </button>
               </div>
             </div>
 
-            <h3 class="platform-name" data-i18n="plat_android_title">Android</h3>
-            <p class="platform-meta" data-i18n="plat_android_meta">Android 8.0+ · ExoPlayer 4K · 120Hz High Refresh</p>
-            <p class="platform-desc" data-i18n="plat_android_desc">
-              Split-per-ABI release APKs with hardware-accelerated 4K playback, background downloads with pause/resume, and brightness/volume gestures.
-            </p>
-
-            <!-- Architecture Filter Chips (DESIGN.md §5 Filter Chips) -->
-            <div class="arch-selector" role="radiogroup" aria-label="Android Architecture">
-              <button type="button" class="filter-chip active" data-arch="arm64-v8a" data-target="android">
-                <span>ARM64 (v8a)</span>
-                <small data-i18n="arch_modern">Recommended</small>
-              </button>
-              <button type="button" class="filter-chip" data-arch="armeabi-v7a" data-target="android">
-                <span>ARM32 (v7a)</span>
-                <small data-i18n="arch_older">Older phones</small>
-              </button>
-              <button type="button" class="filter-chip" data-arch="x86_64" data-target="android">
-                <span>x86_64</span>
-                <small data-i18n="arch_emulator">Chromebook</small>
-              </button>
+            <!-- Cinema Ticket Perforation Line (Notches + 7 Perforation Dots) -->
+            <div class="ticket-perforation" aria-hidden="true">
+              <span class="ticket-notch notch-left"></span>
+              <div class="perf-line">
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="ticket-serial">NO. 01</span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+              </div>
+              <span class="ticket-notch notch-right"></span>
             </div>
 
             <div class="card-footer">
+              <span class="stub-kaf" aria-hidden="true">ك</span>
               <a href="https://github.com/hussainhacko-svg/cinemakom/releases/latest/download/cinemakom-v1.0.0-android-arm64-v8a.apk"
                  class="btn-download-card primary-card-btn"
                  id="dl-btn-android"
@@ -266,39 +501,61 @@
 
           <!-- 2. Android TV / Google TV -->
           <article class="platform-card" data-category="tv" data-os="android-tv">
-            <div class="card-top">
-              <div class="platform-icon-wrap" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="4" width="20" height="13" rx="2" ry="2"/>
-                  <line x1="8" y1="21" x2="16" y2="21"/>
-                  <line x1="12" y1="17" x2="12" y2="21"/>
-                </svg>
+            <div class="ticket-body">
+              <div class="card-top">
+                <div class="card-identity">
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="4" width="20" height="13" rx="2" ry="2"/>
+                      <line x1="8" y1="21" x2="16" y2="21"/>
+                      <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                  </div>
+                  <div class="card-title-group">
+                    <h3 class="platform-name" data-i18n="plat_atv_title">Android TV &amp; Google TV</h3>
+                    <p class="platform-meta" data-i18n="plat_atv_meta">Leanback Launcher · D-Pad Focus Engine · 4K Posters</p>
+                  </div>
+                </div>
+                <div class="card-badges">
+                  <span class="recommended-tag" id="badge-android-tv" hidden data-i18n="tag_detected">Detected</span>
+                  <span class="format-pill">TV APK</span>
+                </div>
               </div>
-              <div class="card-badges">
-                <span class="recommended-tag" id="badge-android-tv" hidden data-i18n="tag_detected">Detected</span>
-                <span class="format-pill">TV APK</span>
+
+              <p class="platform-desc" data-i18n="plat_atv_desc">
+                Dedicated 10-foot living-room UI (`lib/tv`) engineered for D-pad remotes with zero focus traps, two-pane episodes, and instant OK-to-skip intros.
+              </p>
+
+              <!-- TV ABI Selector -->
+              <div class="arch-selector" role="radiogroup" aria-label="Android TV Architecture">
+                <button type="button" class="filter-chip active" data-arch="arm64-v8a" data-target="android-tv">
+                  <span>ARM64 (v8a)</span>
+                  <small data-i18n="arch_tv_64">4K Google TV / Shield</small>
+                </button>
+                <button type="button" class="filter-chip" data-arch="armeabi-v7a" data-target="android-tv">
+                  <span>ARM32 (v7a)</span>
+                  <small data-i18n="arch_tv_32">TCL / Mi Box / Fire TV</small>
+                </button>
               </div>
             </div>
 
-            <h3 class="platform-name" data-i18n="plat_atv_title">Android TV &amp; Google TV</h3>
-            <p class="platform-meta" data-i18n="plat_atv_meta">Leanback Launcher · D-Pad Focus Engine · 4K Posters</p>
-            <p class="platform-desc" data-i18n="plat_atv_desc">
-              Dedicated 10-foot living-room UI (`lib/tv`) engineered for D-pad remotes with zero focus traps, two-pane episodes, and instant OK-to-skip intros.
-            </p>
-
-            <!-- TV ABI Selector (Many TV boxes are 32-bit armeabi-v7a, newer 4K sticks are arm64-v8a) -->
-            <div class="arch-selector" role="radiogroup" aria-label="Android TV Architecture">
-              <button type="button" class="filter-chip active" data-arch="arm64-v8a" data-target="android-tv">
-                <span>ARM64 (v8a)</span>
-                <small data-i18n="arch_tv_64">4K Google TV / Shield</small>
-              </button>
-              <button type="button" class="filter-chip" data-arch="armeabi-v7a" data-target="android-tv">
-                <span>ARM32 (v7a)</span>
-                <small data-i18n="arch_tv_32">TCL / Mi Box / Fire TV</small>
-              </button>
+            <div class="ticket-perforation" aria-hidden="true">
+              <span class="ticket-notch notch-left"></span>
+              <div class="perf-line">
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="ticket-serial">NO. 02</span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+              </div>
+              <span class="ticket-notch notch-right"></span>
             </div>
 
             <div class="card-footer">
+              <span class="stub-kaf" aria-hidden="true">ك</span>
               <a href="https://github.com/hussainhacko-svg/cinemakom/releases/latest/download/cinemakom-v1.0.0-android-arm64-v8a.apk"
                  class="btn-download-card"
                  id="dl-btn-android-tv"
@@ -313,30 +570,52 @@
 
           <!-- 3. macOS -->
           <article class="platform-card" data-category="desktop" data-os="macos">
-            <div class="card-top">
-              <div class="platform-icon-wrap" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                  <line x1="2" y1="20" x2="22" y2="20"/>
-                </svg>
+            <div class="ticket-body">
+              <div class="card-top">
+                <div class="card-identity">
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                      <line x1="2" y1="20" x2="22" y2="20"/>
+                    </svg>
+                  </div>
+                  <div class="card-title-group">
+                    <h3 class="platform-name" data-i18n="plat_macos_title">macOS</h3>
+                    <p class="platform-meta" data-i18n="plat_macos_meta">Apple Silicon &amp; Intel · media_kit (mpv) · Styled ASS</p>
+                  </div>
+                </div>
+                <div class="card-badges">
+                  <span class="recommended-tag" id="badge-macos" hidden data-i18n="tag_detected">Detected</span>
+                  <span class="format-pill">DMG</span>
+                </div>
               </div>
-              <div class="card-badges">
-                <span class="recommended-tag" id="badge-macos" hidden data-i18n="tag_detected">Detected</span>
-                <span class="format-pill">DMG</span>
+
+              <p class="platform-desc" data-i18n="plat_macos_desc">
+                Native macOS disk image with full keyboard shortcuts, extended navigation rail, custom download folder, and styled libass anime subtitles.
+              </p>
+
+              <div class="arch-selector">
+                <span class="static-chip" data-i18n="arch_macos_universal">macOS 12.0+ (DMG Installer)</span>
               </div>
             </div>
 
-            <h3 class="platform-name" data-i18n="plat_macos_title">macOS</h3>
-            <p class="platform-meta" data-i18n="plat_macos_meta">Apple Silicon &amp; Intel · media_kit (mpv) · Styled ASS</p>
-            <p class="platform-desc" data-i18n="plat_macos_desc">
-              Native macOS disk image with full keyboard shortcuts, extended navigation rail, custom download folder, and styled libass anime subtitles.
-            </p>
-
-            <div class="arch-selector">
-              <span class="static-chip" data-i18n="arch_macos_universal">macOS 12.0+ (DMG Installer)</span>
+            <div class="ticket-perforation" aria-hidden="true">
+              <span class="ticket-notch notch-left"></span>
+              <div class="perf-line">
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="ticket-serial">NO. 03</span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+              </div>
+              <span class="ticket-notch notch-right"></span>
             </div>
 
             <div class="card-footer">
+              <span class="stub-kaf" aria-hidden="true">ك</span>
               <a href="https://github.com/hussainhacko-svg/cinemakom/releases/latest/download/cinemakom-v1.0.0-macos.dmg"
                  class="btn-download-card"
                  id="dl-btn-macos"
@@ -351,32 +630,54 @@
 
           <!-- 4. Windows -->
           <article class="platform-card" data-category="desktop" data-os="windows">
-            <div class="card-top">
-              <div class="platform-icon-wrap" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="3" width="8" height="8" rx="1"/>
-                  <rect x="13" y="3" width="8" height="8" rx="1"/>
-                  <rect x="3" y="13" width="8" height="8" rx="1"/>
-                  <rect x="13" y="13" width="8" height="8" rx="1"/>
-                </svg>
+            <div class="ticket-body">
+              <div class="card-top">
+                <div class="card-identity">
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="8" height="8" rx="1"/>
+                      <rect x="13" y="3" width="8" height="8" rx="1"/>
+                      <rect x="3" y="13" width="8" height="8" rx="1"/>
+                      <rect x="13" y="13" width="8" height="8" rx="1"/>
+                    </svg>
+                  </div>
+                  <div class="card-title-group">
+                    <h3 class="platform-name" data-i18n="plat_windows_title">Windows</h3>
+                    <p class="platform-meta" data-i18n="plat_windows_meta">Windows 10 &amp; 11 (64-bit) · Bundled libmpv</p>
+                  </div>
+                </div>
+                <div class="card-badges">
+                  <span class="recommended-tag" id="badge-windows" hidden data-i18n="tag_detected">Detected</span>
+                  <span class="format-pill">ZIP (x64)</span>
+                </div>
               </div>
-              <div class="card-badges">
-                <span class="recommended-tag" id="badge-windows" hidden data-i18n="tag_detected">Detected</span>
-                <span class="format-pill">ZIP (x64)</span>
+
+              <p class="platform-desc" data-i18n="plat_windows_desc">
+                Self-contained portable 64-bit Windows build with bundled mpv video engine, SQLite FFI offline library, and desktop fullscreen controls.
+              </p>
+
+              <div class="arch-selector">
+                <span class="static-chip" data-i18n="arch_win_x64">x86_64 Portable Archive</span>
               </div>
             </div>
 
-            <h3 class="platform-name" data-i18n="plat_windows_title">Windows</h3>
-            <p class="platform-meta" data-i18n="plat_windows_meta">Windows 10 &amp; 11 (64-bit) · Bundled libmpv</p>
-            <p class="platform-desc" data-i18n="plat_windows_desc">
-              Self-contained portable 64-bit Windows build with bundled mpv video engine, SQLite FFI offline library, and desktop fullscreen controls.
-            </p>
-
-            <div class="arch-selector">
-              <span class="static-chip" data-i18n="arch_win_x64">x86_64 Portable Archive</span>
+            <div class="ticket-perforation" aria-hidden="true">
+              <span class="ticket-notch notch-left"></span>
+              <div class="perf-line">
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="ticket-serial">NO. 04</span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+              </div>
+              <span class="ticket-notch notch-right"></span>
             </div>
 
             <div class="card-footer">
+              <span class="stub-kaf" aria-hidden="true">ك</span>
               <a href="https://github.com/hussainhacko-svg/cinemakom/releases/latest/download/cinemakom-v1.0.0-windows-x64.zip"
                  class="btn-download-card"
                  id="dl-btn-windows"
@@ -391,30 +692,52 @@
 
           <!-- 5. Linux -->
           <article class="platform-card" data-category="desktop" data-os="linux">
-            <div class="card-top">
-              <div class="platform-icon-wrap" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="4 17 10 11 4 5"/>
-                  <line x1="12" y1="19" x2="20" y2="19"/>
-                </svg>
+            <div class="ticket-body">
+              <div class="card-top">
+                <div class="card-identity">
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="4 17 10 11 4 5"/>
+                      <line x1="12" y1="19" x2="20" y2="19"/>
+                    </svg>
+                  </div>
+                  <div class="card-title-group">
+                    <h3 class="platform-name" data-i18n="plat_linux_title">Linux</h3>
+                    <p class="platform-meta" data-i18n="plat_linux_meta">Linux x86_64 · GTK3 + libmpv · Freedesktop Icons</p>
+                  </div>
+                </div>
+                <div class="card-badges">
+                  <span class="recommended-tag" id="badge-linux" hidden data-i18n="tag_detected">Detected</span>
+                  <span class="format-pill">TAR.GZ</span>
+                </div>
               </div>
-              <div class="card-badges">
-                <span class="recommended-tag" id="badge-linux" hidden data-i18n="tag_detected">Detected</span>
-                <span class="format-pill">TAR.GZ</span>
+
+              <p class="platform-desc" data-i18n="plat_linux_desc">
+                Native Linux bundle with hicolor icons and `io.github.sharon_xa.cinemakom.desktop` entry. Also supports `--dart-define=CINEMAKOM_TV=true` TV mode.
+              </p>
+
+              <div class="arch-selector">
+                <span class="static-chip" data-i18n="arch_linux_x64">x86_64 Tarball + Desktop Packaging</span>
               </div>
             </div>
 
-            <h3 class="platform-name" data-i18n="plat_linux_title">Linux</h3>
-            <p class="platform-meta" data-i18n="plat_linux_meta">Linux x86_64 · GTK3 + libmpv · Freedesktop Icons</p>
-            <p class="platform-desc" data-i18n="plat_linux_desc">
-              Native Linux bundle with hicolor icons and `io.github.sharon_xa.cinemakom.desktop` entry. Also supports `--dart-define=CINEMAKOM_TV=true` TV mode.
-            </p>
-
-            <div class="arch-selector">
-              <span class="static-chip" data-i18n="arch_linux_x64">x86_64 Tarball + Desktop Packaging</span>
+            <div class="ticket-perforation" aria-hidden="true">
+              <span class="ticket-notch notch-left"></span>
+              <div class="perf-line">
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="ticket-serial">NO. 05</span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+              </div>
+              <span class="ticket-notch notch-right"></span>
             </div>
 
             <div class="card-footer">
+              <span class="stub-kaf" aria-hidden="true">ك</span>
               <a href="https://github.com/hussainhacko-svg/cinemakom/releases/latest/download/cinemakom-v1.0.0-linux-x64.tar.gz"
                  class="btn-download-card"
                  id="dl-btn-linux"
@@ -429,30 +752,52 @@
 
           <!-- 6. iOS (iPhone & iPad) -->
           <article class="platform-card" data-category="mobile" data-os="ios">
-            <div class="card-top">
-              <div class="platform-icon-wrap" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="6" y="2" width="12" height="20" rx="2" ry="2"/>
-                  <line x1="12" y1="18" x2="12.01" y2="18"/>
-                </svg>
+            <div class="ticket-body">
+              <div class="card-top">
+                <div class="card-identity">
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="6" y="2" width="12" height="20" rx="2" ry="2"/>
+                      <line x1="12" y1="18" x2="12.01" y2="18"/>
+                    </svg>
+                  </div>
+                  <div class="card-title-group">
+                    <h3 class="platform-name" data-i18n="plat_ios_title">iOS (iPhone &amp; iPad)</h3>
+                    <p class="platform-meta" data-i18n="plat_ios_meta">iOS 14.0+ · Unsigned IPA · media_kit + libass</p>
+                  </div>
+                </div>
+                <div class="card-badges">
+                  <span class="recommended-tag" id="badge-ios" hidden data-i18n="tag_detected">Detected</span>
+                  <span class="format-pill">IPA</span>
+                </div>
               </div>
-              <div class="card-badges">
-                <span class="recommended-tag" id="badge-ios" hidden data-i18n="tag_detected">Detected</span>
-                <span class="format-pill">IPA</span>
+
+              <p class="platform-desc" data-i18n="plat_ios_desc">
+                Unsigned IPA package ready for sideloading via AltStore, SideStore, Sideloadly, or TrollStore with offline downloads and styled Arabic subtitles.
+              </p>
+
+              <div class="arch-selector">
+                <span class="static-chip" data-i18n="arch_ios_arm64">ARM64 Unsigned IPA (Sideload)</span>
               </div>
             </div>
 
-            <h3 class="platform-name" data-i18n="plat_ios_title">iOS (iPhone &amp; iPad)</h3>
-            <p class="platform-meta" data-i18n="plat_ios_meta">iOS 14.0+ · Unsigned IPA · media_kit + libass</p>
-            <p class="platform-desc" data-i18n="plat_ios_desc">
-              Unsigned IPA package ready for sideloading via AltStore, SideStore, Sideloadly, or TrollStore with offline downloads and styled Arabic subtitles.
-            </p>
-
-            <div class="arch-selector">
-              <span class="static-chip" data-i18n="arch_ios_arm64">ARM64 Unsigned IPA (Sideload)</span>
+            <div class="ticket-perforation" aria-hidden="true">
+              <span class="ticket-notch notch-left"></span>
+              <div class="perf-line">
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="ticket-serial">NO. 06</span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+              </div>
+              <span class="ticket-notch notch-right"></span>
             </div>
 
             <div class="card-footer">
+              <span class="stub-kaf" aria-hidden="true">ك</span>
               <a href="https://github.com/hussainhacko-svg/cinemakom/releases/latest/download/cinemakom-v1.0.0-ios-unsigned.ipa"
                  class="btn-download-card"
                  id="dl-btn-ios"
@@ -467,29 +812,51 @@
 
           <!-- 7. Apple TV (tvOS) -->
           <article class="platform-card" data-category="tv" data-os="apple-tv">
-            <div class="card-top">
-              <div class="platform-icon-wrap" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="4" width="20" height="14" rx="3" ry="3"/>
-                  <path d="M8 21h8"/>
-                </svg>
+            <div class="ticket-body">
+              <div class="card-top">
+                <div class="card-identity">
+                  <div class="platform-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="4" width="20" height="14" rx="3" ry="3"/>
+                      <path d="M8 21h8"/>
+                    </svg>
+                  </div>
+                  <div class="card-title-group">
+                    <h3 class="platform-name" data-i18n="plat_tvos_title">Apple TV (tvOS)</h3>
+                    <p class="platform-meta" data-i18n="plat_tvos_meta">Apple TV 4K &amp; HD · Siri Remote · Custom flutter-tvos Engine</p>
+                  </div>
+                </div>
+                <div class="card-badges">
+                  <span class="format-pill">tvOS</span>
+                </div>
               </div>
-              <div class="card-badges">
-                <span class="format-pill">tvOS</span>
+
+              <p class="platform-desc" data-i18n="plat_tvos_desc">
+                Built via `lib/main_tvos.dart` with federated tvOS plugins (`video_player_tvos`, `sqflite_tvos`) and the 10-foot Marquee TV interface.
+              </p>
+
+              <div class="arch-selector">
+                <span class="static-chip" data-i18n="arch_tvos_arm64">tvOS ARM64 (`flutter-tvos` / Xcode DeviceHub)</span>
               </div>
             </div>
 
-            <h3 class="platform-name" data-i18n="plat_tvos_title">Apple TV (tvOS)</h3>
-            <p class="platform-meta" data-i18n="plat_tvos_meta">Apple TV 4K &amp; HD · Siri Remote · Custom flutter-tvos Engine</p>
-            <p class="platform-desc" data-i18n="plat_tvos_desc">
-              Built via `lib/main_tvos.dart` with federated tvOS plugins (`video_player_tvos`, `sqflite_tvos`) and the 10-foot Marquee TV interface.
-            </p>
-
-            <div class="arch-selector">
-              <span class="static-chip" data-i18n="arch_tvos_arm64">tvOS ARM64 (`flutter-tvos` / Xcode DeviceHub)</span>
+            <div class="ticket-perforation" aria-hidden="true">
+              <span class="ticket-notch notch-left"></span>
+              <div class="perf-line">
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="ticket-serial">NO. 07</span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+                <span class="perf-dot"></span>
+              </div>
+              <span class="ticket-notch notch-right"></span>
             </div>
 
             <div class="card-footer">
+              <span class="stub-kaf" aria-hidden="true">ك</span>
               <a href="https://github.com/hussainhacko-svg/cinemakom/releases"
                  class="btn-download-card"
                  id="dl-btn-tvos"
