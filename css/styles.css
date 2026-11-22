@@ -382,13 +382,83 @@ html[dir="rtl"] .brand-arabic {
   align-items: center;
 }
 
-/* Marquee Bulbs Row (DESIGN.md §4) */
-.bulb-row {
-  display: inline-flex;
+/* Picture-Palace Marquee Header Board (Idea #5) */
+.marquee-sign-board {
+  background-color: var(--booth);
+  border: 2px solid var(--velvet-strong);
+  border-radius: var(--radius-panel);
+  padding: 10px 14px;
+  margin-bottom: var(--space-l);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.marquee-bulb-rail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 0;
+  padding-inline: 4px;
+}
+
+.marquee-sign-inner {
+  background-color: var(--night);
+  border: 1px solid var(--velvet);
+  border-radius: var(--radius-card);
+  padding: clamp(14px, 2.2vw, 20px);
+}
+
+.marquee-sign-inner .hero-title {
+  margin-bottom: 14px;
+}
+
+/* Box Office Showtimes Letterboard Strip */
+.box-office-strip {
+  background-color: var(--booth-raised);
+  border: 1px solid var(--velvet-strong);
+  border-radius: var(--radius-thumb);
+  padding: 7px 10px;
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 7px;
-  margin-bottom: var(--space-l);
+  gap: 6px 8px;
+}
+
+.box-office-tag {
+  background-color: var(--bulb-fill);
+  color: var(--on-bulb);
+  font-family: var(--font-display-latin), var(--font-display-arabic);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+html[dir="rtl"] .box-office-tag {
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
+.box-office-spec {
+  font-family: var(--font-display-latin), var(--font-display-arabic);
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+}
+
+html[dir="rtl"] .box-office-spec {
+  letter-spacing: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.box-office-dot {
+  color: var(--bulb);
+  font-weight: 700;
 }
 
 .bulb-dot {
@@ -396,11 +466,12 @@ html[dir="rtl"] .brand-arabic {
   height: 6px;
   border-radius: 50%;
   background-color: var(--velvet-strong);
-  transition: background-color 250ms ease-out;
+  transition: background-color 250ms ease-out, transform 250ms ease-out;
 }
 
 .bulb-dot.lit {
   background-color: var(--bulb);
+  transform: scale(1.25);
 }
 
 .hero-synopsis {

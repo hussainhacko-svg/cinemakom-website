@@ -55,6 +55,10 @@ const I18N = {
     hero_subtitle:
       'A native, zero-censorship streaming frontend for the Cinemana catalog. Built with the warm Marquee picture-palace design system for phones, desktops, and living-room TVs at up to 4K 120Hz.',
     hero_meta_platforms: 'Android · iOS · macOS · Windows · Linux · TV',
+    box_office_showing: 'SHOWING IN',
+    box_office_noads: 'ZERO ADS',
+    box_office_uncut: 'ZERO CENSORSHIP',
+    box_office_offline: 'OFFLINE READY',
     cta_download_default: 'Download Cinemakom',
     cta_all_platforms: 'All Platforms & Architectures',
     detected_prefix: 'Detected platform:',
@@ -66,8 +70,8 @@ const I18N = {
     mock_tab_player: 'Player',
     mock_tab_settings: 'Settings',
     mock_now_showing: 'NOW SHOWING',
-    mock_featured_title: 'AL-RASHEED AFTER DARK',
-    mock_featured_meta: '2026 · Drama · 2h 34m',
+    mock_featured_title: 'INTERSTELLAR',
+    mock_featured_meta: '2014 · Sci-Fi · 2h 49m',
     mock_play: 'Play',
     mock_continue_watching: 'CONTINUE WATCHING',
     mock_see_all: 'See all',
@@ -235,6 +239,10 @@ const I18N = {
     hero_subtitle:
       'واجهة بث أصلية متعددة المنصات لمكتبة سينمانا بدون أي حجب أو إعلانات. مصممة بنظام "ماركي" المستوحى من قاعات السينما الكلاسيكية للهواتف والحواسيب وشاشات التلفاز بدقة تصل إلى 4K وبمعدل 120Hz.',
     hero_meta_platforms: 'أندرويد · iOS · ماك · ويندوز · لينكس · التلفاز',
+    box_office_showing: 'يُعرض بدقة',
+    box_office_noads: 'بدون إعلانات',
+    box_office_uncut: 'بدون حجب',
+    box_office_offline: 'تشغيل دون اتصال',
     cta_download_default: 'تحميل سينماكم',
     cta_all_platforms: 'جميع المنصات والمعماريات',
     detected_prefix: 'النظام المكتشف:',
@@ -246,8 +254,8 @@ const I18N = {
     mock_tab_player: 'المشغل',
     mock_tab_settings: 'الإعدادات',
     mock_now_showing: 'يُعرض الآن',
-    mock_featured_title: 'شارع الرشيد بعد الظلام',
-    mock_featured_meta: '2026 · دراما · 2 س 34 د',
+    mock_featured_title: 'INTERSTELLAR',
+    mock_featured_meta: '2014 · خيال علمي · 2 س 49 د',
     mock_play: 'تشغيل',
     mock_continue_watching: 'متابعة المشاهدة',
     mock_see_all: 'عرض الكل',
@@ -697,17 +705,22 @@ async function syncLatestGitHubRelease() {
 }
 
 /**
- * Animates the Marquee bulbs in sequence (DESIGN.md §4)
+ * Animates the Marquee sign board top & bottom bulb rails in sequence (DESIGN.md §4)
  */
 function startMarqueeBulbAnimation() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const bulbs = document.querySelectorAll('.bulb-row .bulb-dot');
-  if (!bulbs.length) return;
+  const topBulbs = document.querySelectorAll('.marquee-bulb-rail:not(.bottom-rail) .bulb-dot');
+  const bottomBulbs = document.querySelectorAll('.marquee-bulb-rail.bottom-rail .bulb-dot');
+  if (!topBulbs.length) return;
   let idx = 0;
   setInterval(() => {
-    bulbs.forEach((b, i) => b.classList.toggle('lit', i === idx));
-    idx = (idx + 1) % bulbs.length;
-  }, 1400);
+    topBulbs.forEach((b, i) => b.classList.toggle('lit', i === idx));
+    if (bottomBulbs.length) {
+      const revIdx = (bottomBulbs.length - 1 - (idx % bottomBulbs.length) + bottomBulbs.length) % bottomBulbs.length;
+      bottomBulbs.forEach((b, i) => b.classList.toggle('lit', i === revIdx));
+    }
+    idx = (idx + 1) % topBulbs.length;
+  }, 1100);
 }
 
 /**
