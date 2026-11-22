@@ -74,6 +74,9 @@
 
   /* Motion: 150ms ease-out for state changes (DESIGN.md §3) */
   --ease-state: 150ms ease-out;
+
+  /* Sticky header offset for anchor links (#downloads, #preview, #features, #install-guide) */
+  --header-offset: 88px;
 }
 
 /* Reset & Base */
@@ -87,12 +90,17 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-offset, 88px);
   background-color: var(--night);
   color: var(--cream);
   font-family: var(--font-ui-latin), var(--font-ui-arabic);
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+section[id] {
+  scroll-margin-top: var(--header-offset, 88px);
 }
 
 html[dir="rtl"] {

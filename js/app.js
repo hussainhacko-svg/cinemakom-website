@@ -655,6 +655,19 @@ function startMarqueeBulbAnimation() {
 }
 
 /**
+ * Keeps `--header-offset` in sync with the actual sticky `.site-header` height
+ * across all screen ratios so clicking Downloads / Interface / Features / Install Guide
+ * never hides the section eyebrow or headline behind the header.
+ */
+function syncHeaderScrollOffset() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  const pos = window.getComputedStyle(header).position;
+  const offset = pos === 'sticky' || pos === 'fixed' ? header.offsetHeight + 8 : 16;
+  document.documentElement.style.setProperty('--header-offset', `${offset}px`);
+}
+
+/**
  * Wire up all event listeners
  */
 document.addEventListener('DOMContentLoaded', () => {
@@ -663,6 +676,12 @@ document.addEventListener('DOMContentLoaded', () => {
   applyLanguage(state.lang);
   highlightDetectedPlatformCard();
   startMarqueeBulbAnimation();
+  syncHeaderScrollOffset();
+  window.addEventListener('resize', syncHeaderScrollOffset);
+  if ('ResizeObserver' in window) {
+    const header = document.querySelector('.site-header');
+    if (header) new ResizeObserver(syncHeaderScrollOffset).observe(header);
+  }
   syncLatestGitHubRelease();
 
   // Theme Toggle
