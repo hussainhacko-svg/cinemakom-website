@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="marquee">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinemakom · سينماكم — Download for Android, iOS, macOS, Windows, Linux &amp; TV</title>
+  <meta name="description" content="Cinemakom (سينماكم) is a fast, native, cross-platform streaming frontend for Android, iOS, macOS, Windows, Linux, Android TV, and Apple TV." />
+  <link rel="icon" type="image/svg+xml" href="assets/app-icon.svg" />
+
+  <!-- Bundled Google Fonts matching pubspec.yaml (Big Shoulders Display, Reem Kufi, IBM Plex Sans, IBM Plex Sans Arabic) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Reem+Kufi:wght@700&amp;display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Top Marquee Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Brand Lockup (flips order in Arabic just like CinemakomLogo widget) -->
+      <a href="#" class="brand-lockup" aria-label="Cinemakom Home">
+        <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true">
+          <path fill="currentColor" fill-rule="evenodd" d="M18 24 H82 A6 6 0 0 1 88 30 V43.0 A7 7 0 0 0 88 57.0 V70 A6 6 0 0 1 82 76 H18 A6 6 0 0 1 12 70 V57.0 A7 7 0 0 0 12 43.0 V30 A6 6 0 0 1 18 24 Z M66.4 31.0 A1.6 1.6 0 1 0 69.6 31.0 A1.6 1.6 0 1 0 66.4 31.0 Z M66.4 37.5 A1.6 1.6 0 1 0 69.6 37.5 A1.6 1.6 0 1 0 66.4 37.5 Z M66.4 44.0 A1.6 1.6 0 1 0 69.6 44.0 A1.6 1.6 0 1 0 66.4 44.0 Z M66.4 50.5 A1.6 1.6 0 1 0 69.6 50.5 A1.6 1.6 0 1 0 66.4 50.5 Z M66.4 57.0 A1.6 1.6 0 1 0 69.6 57.0 A1.6 1.6 0 1 0 66.4 57.0 Z M66.4 63.5 A1.6 1.6 0 1 0 69.6 63.5 A1.6 1.6 0 1 0 66.4 63.5 Z M66.4 70.0 A1.6 1.6 0 1 0 69.6 70.0 A1.6 1.6 0 1 0 66.4 70.0 Z M19.47 64L22.98 58.16L53.69 58.16Q53.73 57.03 53 56.34Q52.27 55.65 49.93 55.65L25.27 55.65L31.2 49.81L31.21 49.81L45.18 36L45.18 44.72Q44.88 44.26 44.59 44.26Q44.3 44.26 44.05 44.51L38.58 49.81L49.93 49.81Q53.02 49.81 54.9 50.69Q56.78 51.56 57.76 53.03Q58.74 54.49 59.11 56.24Q59.49 57.99 59.51 59.76Q59.53 61.54 59.53 63.04Q59.53 63.54 59.11 63.75Q58.7 63.96 58.28 63.98Q57.86 64 57.86 64Z"/>
+        </svg>
+        <div class="brand-wordmark">
+          <span class="brand-latin" dir="ltr">CINEMAKOM</span>
+          <span class="brand-arabic" dir="rtl">سينماكم</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="site-nav" aria-label="Primary Navigation">
+        <a href="#downloads" class="nav-link" data-i18n="nav_downloads">Downloads</a>
+        <a href="#preview" class="nav-link" data-i18n="nav_screens">Interface</a>
+        <a href="#features" class="nav-link" data-i18n="nav_features">Features</a>
+        <a href="#install-guide" class="nav-link" data-i18n="nav_install">Install Guide</a>
+      </nav>
+
+      <!-- Controls: Theme Switcher (Marquee / Bordeaux) & Language Toggle (EN / AR) -->
+      <div class="header-actions">
+        <button type="button" id="themeToggle" class="chip-btn" aria-label="Switch Theme" title="Switch between Marquee &amp; Bordeaux Curtain">
+          <span class="theme-dot" aria-hidden="true"></span>
+          <span id="themeLabel" data-i18n="theme_marquee">Marquee</span>
+        </button>
+        <button type="button" id="langToggle" class="chip-btn" aria-label="Switch Language">
+          <span id="langLabel">العربية</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <!-- Marquee Bulb Motif Row -->
+          <div class="bulb-row" aria-hidden="true">
+            <span class="bulb-dot lit"></span>
+            <span class="bulb-dot"></span>
+            <span class="bulb-dot"></span>
+            <span class="bulb-dot"></span>
+            <span class="bulb-dot"></span>
+            <span class="bulb-dot"></span>
+            <span class="bulb-dot"></span>
+          </div>
+
+          <p class="eyebrow" data-i18n="hero_eyebrow">NOW SHOWING ON EVERY SCREEN</p>
+          <h1 class="hero-title" data-i18n="hero_title">YOUR TICKET. YOUR CINEMA.</h1>
+          <p class="hero-synopsis" data-i18n="hero_subtitle">
+            A native, zero-censorship streaming frontend for the Cinemana catalog. Built with the warm Marquee picture-palace design system for phones, desktops, and living-room TVs at up to 4K 120Hz.
+          </p>
+
+          <!-- Meta Badges -->
+          <div class="hero-meta">
+            <span class="badge-4k">4K 2160p</span>
+            <span class="meta-item" id="releaseVersionBadge">v1.0.0</span>
+            <span class="meta-sep">·</span>
+            <span class="meta-item" data-i18n="hero_meta_platforms">Android · iOS · macOS · Windows · Linux · TV</span>
+          </div>
+
+          <!-- Primary Smart Download CTA + Secondary All Platforms CTA -->
+          <div class="hero-cta-group">
+            <a href="#downloads" id="primaryDownloadBtn" class="btn-primary" data-platform="auto">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span id="primaryDownloadText" data-i18n="cta_download_default">Download Cinemakom</span>
+            </a>
+
+            <a href="#downloads" class="btn-secondary">
+              <span data-i18n="cta_all_platforms">All Platforms &amp; Architectures</span>
+            </a>
+          </div>
+
+          <p class="detected-caption" id="detectedOsCaption">
+            <span data-i18n="detected_prefix">Detected platform:</span>
+            <strong id="detectedOsName">macOS</strong>
+            <span class="meta-sep">·</span>
+            <a href="#downloads" class="inline-link" data-i18n="choose_another_os">Choose another build</a>
+          </p>
+        </div>
+
+        <!-- Hero Interactive Marquee Preview Card -->
+        <div class="hero-visual">
+          <div class="marquee-stage-card">
+            <div class="stage-top-bar">
+              <div class="stage-lockup">
+                <svg class="stage-mark" viewBox="0 0 100 100" aria-hidden="true">
+                  <path fill="currentColor" fill-rule="evenodd" d="M18 24 H82 A6 6 0 0 1 88 30 V43.0 A7 7 0 0 0 88 57.0 V70 A6 6 0 0 1 82 76 H18 A6 6 0 0 1 12 70 V57.0 A7 7 0 0 0 12 43.0 V30 A6 6 0 0 1 18 24 Z M66.4 31.0 A1.6 1.6 0 1 0 69.6 31.0 A1.6 1.6 0 1 0 66.4 31.0 Z M66.4 37.5 A1.6 1.6 0 1 0 69.6 37.5 A1.6 1.6 0 1 0 66.4 37.5 Z M66.4 44.0 A1.6 1.6 0 1 0 69.6 44.0 A1.6 1.6 0 1 0 66.4 44.0 Z M66.4 50.5 A1.6 1.6 0 1 0 69.6 50.5 A1.6 1.6 0 1 0 66.4 50.5 Z M66.4 57.0 A1.6 1.6 0 1 0 69.6 57.0 A1.6 1.6 0 1 0 66.4 57.0 Z M66.4 63.5 A1.6 1.6 0 1 0 69.6 63.5 A1.6 1.6 0 1 0 66.4 63.5 Z M66.4 70.0 A1.6 1.6 0 1 0 69.6 70.0 A1.6 1.6 0 1 0 66.4 70.0 Z M19.47 64L22.98 58.16L53.69 58.16Q53.73 57.03 53 56.34Q52.27 55.65 49.93 55.65L25.27 55.65L31.2 49.81L31.21 49.81L45.18 36L45.18 44.72Q44.88 44.26 44.59 44.26Q44.3 44.26 44.05 44.51L38.58 49.81L49.93 49.81Q53.02 49.81 54.9 50.69Q56.78 51.56 57.76 53.03Q58.74 54.49 59.11 56.24Q59.49 57.99 59.51 59.76Q59.53 61.54 59.53 63.04Q59.53 63.54 59.11 63.75Q58.7 63.96 58.28 63.98Q57.86 64 57.86 64Z"/>
+                </svg>
+                <span class="stage-brand-text">CINEMAKOM</span>
+              </div>
+              <div class="stage-nav-pills">
+                <span class="stage-pill active" data-i18n="mock_tab_home">Home</span>
+                <span class="stage-pill" data-i18n="mock_tab_search">Search</span>
+                <span class="stage-pill" data-i18n="mock_tab_library">Library</span>
+                <span class="stage-pill" data-i18n="mock_tab_downloads">Downloads</span>
+              </div>
+            </div>
+
+            <!-- Banner Art Mock with 2.7:1 Cinema Ratio -->
+            <div class="stage-banner">
+              <div class="stage-banner-art">
+                <span class="badge-4k">4K</span>
+                <div class="stage-ticket-watermark" aria-hidden="true">ك</div>
+              </div>
+              <div class="stage-banner-info">
+                <span class="eyebrow" data-i18n="mock_now_showing">NOW SHOWING</span>
+                <h2 class="stage-movie-title" data-i18n="mock_featured_title">AL-RASHEED AFTER DARK</h2>
+                <p class="stage-movie-meta" data-i18n="mock_featured_meta">2026 · Drama · 2h 34m</p>
+                <div class="stage-banner-actions">
+                  <span class="stage-play-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <span data-i18n="mock_play">Play</span>
+                  </span>
+                  <span class="stage-icon-btn" aria-label="Bookmark">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Continue Watching Row Mock (DESIGN.md §5) -->
+            <div class="stage-section">
+              <div class="stage-section-header">
+                <span class="stage-section-title" data-i18n="mock_continue_watching">CONTINUE WATCHING</span>
+                <span class="stage-see-all" data-i18n="mock_see_all">See all</span>
+              </div>
+              <div class="continue-card-mock">
+                <div class="continue-poster-thumb">
+                  <span class="badge-4k-mini">4K</span>
+                </div>
+                <div class="continue-details">
+                  <div class="continue-title" data-i18n="mock_continue_title">Dune: Part Two</div>
+                  <div class="continue-sub" data-i18n="mock_continue_ep">1080p · Arabic (Styled ASS)</div>
+                  <div class="progress-track">
+                    <div class="progress-fill" style="width: 68%"></div>
+                  </div>
+                  <div class="continue-time" data-i18n="mock_continue_left">42 min left</div>
+                </div>
+                <div class="continue-play-circle">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Downloads Hub Section -->
+    <section id="downloads" class="downloads-section">
+      <div class="container">
+        <div class="section-header-block">
+          <div>
+            <p class="eyebrow" data-i18n="dl_eyebrow">DIRECT RELEASE PACKAGES</p>
+            <h2 class="display-large" data-i18n="dl_title">DOWNLOAD CINEMAKOM</h2>
+            <p class="section-subtitle" data-i18n="dl_subtitle">
+              Choose your device below. No store telemetry, no ads, no account required.
+            </p>
+          </div>
+
+          <!-- Platform Category Segmented Filter (DESIGN.md §5 Segmented Control) -->
+          <div class="segmented-control" role="tablist" aria-label="Filter platforms">
+            <button type="button" class="segment-btn active" data-filter="all" role="tab" aria-selected="true" data-i18n="filter_all">All (7)</button>
+            <button type="button" class="segment-btn" data-filter="mobile" role="tab" aria-selected="false" data-i18n="filter_mobile">Mobile</button>
+            <button type="button" class="segment-btn" data-filter="desktop" role="tab" aria-selected="false" data-i18n="filter_desktop">Desktop</button>
+            <button type="button" class="segment-btn" data-filter="tv" role="tab" aria-selected="false" data-i18n="filter_tv">TV</button>
+          </div>
+        </div>
+
+        <!-- Release Source Bar -->
+        <div class="release-info-bar">
+          <div class="release-info-start">
+            <span class="bulb-indicator" id="releaseSyncDot"></span>
+            <span class="release-status-text" id="releaseStatusText" data-i18n="release_latest_ready">Latest release build: v1.0.0</span>
+          </div>
+          <div class="release-info-end">
+            <button type="button" id="checksumBtn" class="text-action-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span data-i18n="view_checksums">SHA256 Checksums</span>
+            </button>
+            <a href="https://github.com/hussainhacko-svg/cinemakom/releases" id="githubReleasesLink" target="_blank" rel="noopener noreferrer" class="text-action-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span data-i18n="github_releases">GitHub Releases</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Platform Download Cards Grid -->
+        <div class="platform-grid" id="platformGrid">
+
+          <!-- 1. Android Phone & Tablet -->
+          <article class="platform-card" data-category="mobile" data-os="android">
+            <div class="card-top">
+              <div class="platform-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                  <line x1="12" y1="18" x2="12.01" y2="18"/>
+                </svg>
+              </div>
+              <div class="card-badges">
+                <span class="recommended-tag" id="badge-android" hidden data-i18n="tag_detected">Detected</span>
+                <span class="format-pill">APK</span>
+              </div>
+            </div>
+
+            <h3 class="platform-name" data-i18n="plat_android_title">Android</h3>
+            <p class="platform-meta" data-i18n="plat_android_meta">Android 8.0+ · ExoPlayer 4K · 120Hz High Refresh</p>
+            <p class="platform-desc" data-i18n="plat_android_desc">
+              Split-per-ABI release APKs with hardware-accelerated 4K playback, background downloads with pause/resume, and brightness/volume gestures.
+            </p>
+
+            <!-- Architecture Filter Chips (DESIGN.md §5 Filter Chips) -->
+            <div class="arch-selector" role="radiogroup" aria-label="Android Architecture">
+              <button type="button" class="filter-chip active" data-arch="arm64-v8a" data-target="android">
+                <span>ARM64 (v8a)</span>
+                <small data-i18n="arch_modern">Recommended</small>
+              </button>
+              <button type="button" class="filter-chip" data-arch="armeabi-v7a" data-target="android">
+                <span>ARM32 (v7a)</span>
+                <small data-i18n="arch_older">Older phones</small>
+              </button>
+              <button type="button" class="filter-chip" data-arch="x86_64" data-target="android">
+                <span>x86_64</span>
+                <small data-i18n="arch_emulator">Chromebook</small>
+              </button>
+            </div>
+
+            <div class="card-footer">
+              <a href="https://github.com/hussainhacko-svg/cinemakom/releases/latest/download/cinemakom-v1.0.0-android-arm64-v8a.apk"
+                 class="btn-download-card primary-card-btn"
+                 id="dl-btn-android"
+                 data-build="android-arm64-v8a"
+                 data-filename="cinemakom-v1.0.0-android-arm64-v8a.apk">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span class="dl-btn-label" data-i18n="btn_dl_android_arm64">Download APK (arm64-v8a)</span>
+              </a>
+              <div class="file-caption" id="file-caption-android">cinemakom-v1.0.0-android-arm64-v8a.apk</div>
+            </div>
+          </article>
+
+          <!-- 2. Android TV / Google TV -->
+          <article class="platform-card" data-category="tv" data-os="android-tv">
+            <div class="card-top">
+              <div class="platform-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="13" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <div class="card-badges">
+                <span class="recommended-tag" id="badge-android-tv" hidden data-i18n="tag_detected">Detected</span>
+                <span class="format-pill">TV APK</span>
+              </div>
+            </div>
+
+            <h3 class="platform-name" data-i18n="plat_atv_title">Android TV &amp; Google TV</h3>
+            <p class="platform-meta" data-i18n="plat_atv_meta">Leanback Launcher · D-Pad Focus Engine · 4K Posters</p>
+            <p class="platform-desc" data-i18n="plat_atv_desc">
+              Dedicated 10-foot living-room UI (`lib/tv`) engineered for D-pad remotes with zero focus traps, two-pane episodes, and instant OK-to-skip intros.
+            </p>
+
+            <!-- TV ABI Selector (Many TV boxes are 32-bit armeabi-v7a, newer 4K sticks are arm64-v8a) -->
+            <div class="arch-selector" role="radiogroup" aria-label="Android TV Architecture">
+              <button type="button" class="filter-chip active" data-arch="arm64-v8a" data-target="android-tv">
+                <span>ARM64 (v8a)</span>
+                <small data-i18n="arch_tv_64">4K Google TV / Shield</small>
+              </button>
+              <button type="button" class="filter-chip" data-arch="armeabi-v7a" data-target="android-tv">
+                <span>ARM32 (v7a)</span>
+                <small data-i18n="arch_tv_32">TCL / Mi Box / Fire TV</small>
+              </button>
+            </div>
+
+            <div class="card-footer">
+              <a href="https://github.com/hussainhacko-svg/cinemakom/releases/latest/download/cinemakom-v1.0.0-android-arm64-v8a.apk"
+                 class="btn-download-card"
+                 id="dl-btn-android-tv"
+                 data-build="android-tv-arm64-v8a"
+                 data-filename="cinemakom-v1.0.0-android-arm64-v8a.apk">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span class="dl-btn-label" data-i18n="btn_dl_atv_arm64">Download TV APK (arm64-v8a)</span>
+              </a>
+              <div class="file-caption" id="file-caption-android-tv">cinemakom-v1.0.0-android-arm64-v8a.apk</div>
+            </div>
+          </article>
+
+          <!-- 3. macOS -->
+          <article class="platform-card" data-category="desktop" data-os="macos">
+            <div class="card-top">
+              <div class="platform-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="2" y1="20" x2="22" y2="20"/>
+                </svg>
+              </div>
+              <div class="card-badges">
+                <span class="recommended-tag" id="badge-macos" hidden data-i18n="tag_detected">Detected</span>
+                <span class="format-pill">DMG</span>
+              </div>
+            </div>
+
+            <h3 class="platform-name" data-i18n="plat_macos_title">macOS</h3>
+            <p class="platform-meta" data-i18n="plat_macos_meta">Apple Silicon &amp; Intel · media_kit (mpv) · Styled ASS</p>
+            <p class="platform-desc" data-i18n="plat_macos_desc">
+              Native macOS disk image with full keyboard shortcuts, extended navigation rail, custom download folder, and styled libass anime subtitles.
+            </p>
+
+            <div class="arch-selector">
+              <span class="static-chip" data-i18n="arch_macos_universal">macOS 12.0+ (DMG Installer)</span>
+            </div>
+
+            <div class="card-footer">
+              <a href="https://github.com/hussainhacko-svg/cinemakom/releases/latest/download/cinemakom-v1.0.0-macos.dmg"
+                 class="btn-download-card"
+                 id="dl-btn-macos"
+                 data-build="macos"
+                 data-filename="cinemakom-v1.0.0-macos.dmg">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span class="dl-btn-label" data-i18n="btn_dl_macos">Download for macOS (.dmg)</span>
+              </a>
+              <div class="file-caption" id="file-caption-macos">cinemakom-v1.0.0-macos.dmg</div>
+            </div>
+          </article>
+
+          <!-- 4. Windows -->
+          <article class="platform-card" data-category="desktop" data-os="windows">
+            <div class="card-top">
+              <div class="platform-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="8" height="8" rx="1"/>
+                  <rect x="13" y="3" width="8" height="8" rx="1"/>
+                  <rect x="3" y="13" width="8" height="8" rx="1"/>
+                  <rect x="13" y="13" width="8" height="8" rx="1"/>
+                </svg>
+              </div>
+              <div class="card-badges">
+                <span class="recommended-tag" id="badge-windows" hidden data-i18n="tag_detected">Detected</span>
+                <span class="format-pill">ZIP (x64)</span>
+              </div>
+            </div>
+
+            <h3 class="platform-name" data-i18n="plat_windows_title">Windows</h3>
+            <p class="platform-meta" data-i18n="plat_windows_meta">Windows 10 &amp; 11 (64-bit) · Bundled libmpv</p>
+            <p class="platform-desc" data-i18n="plat_windows_desc">
+              Self-contained portable 64-bit Windows build with bundled mpv video engine, SQLite FFI offline library, and desktop fullscreen controls.
+            </p>
+
+            <div class="arch-selector">
+              <span class="static-chip" data-i18n="arch_win_x64">x86_64 Portable Archive</span>
+            </div>
+
+            <div class="card-footer">
+              <a href="https://github.com/hussainhacko-svg/cinemakom/releases/latest/download/cinemakom-v1.0.0-windows-x64.zip"
+                 class="btn-download-card"
+                 id="dl-btn-windows"
+                 data-build="windows-x64"
+                 data-filename="cinemakom-v1.0.0-windows-x64.zip">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span class="dl-btn-label" data-i18n="btn_dl_windows">Download for Windows (.zip)</span>
+              </a>
+              <div class="file-caption" id="file-caption-windows">cinemakom-v1.0.0-windows-x64.zip</div>
+            </div>
+          </article>
+
+          <!-- 5. Linux -->
+          <article class="platform-card" data-category="desktop" data-os="linux">
+            <div class="card-top">
+              <div class="platform-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="4 17 10 11 4 5"/>
+                  <line x1="12" y1="19" x2="20" y2="19"/>
+                </svg>
+              </div>
+              <div class="card-badges">
+                <span class="recommended-tag" id="badge-linux" hidden data-i18n="tag_detected">Detected</span>
+                <span class="format-pill">TAR.GZ</span>
+              </div>
+            </div>
+
+            <h3 class="platform-name" data-i18n="plat_linux_title">Linux</h3>
+            <p class="platform-meta" data-i18n="plat_linux_meta">Linux x86_64 · GTK3 + libmpv · Freedesktop Icons</p>
+            <p class="platform-desc" data-i18n="plat_linux_desc">
+              Native Linux bundle with hicolor icons and `io.github.sharon_xa.cinemakom.desktop` entry. Also supports `--dart-define=CINEMAKOM_TV=true` TV mode.
+            </p>
+
+            <div class="arch-selector">
+              <span class="static-chip" data-i18n="arch_linux_x64">x86_64 Tarball + Desktop Packaging</span>
+            </div>
+
+            <div class="card-footer">
+              <a href="https://github.com/hussainhacko-svg/cinemakom/releases/latest/download/cinemakom-v1.0.0-linux-x64.tar.gz"
+                 class="btn-download-card"
+                 id="dl-btn-linux"
+                 data-build="linux-x64"
+                 data-filename="cinemakom-v1.0.0-linux-x64.tar.gz">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span class="dl-btn-label" data-i18n="btn_dl_linux">Download for Linux (.tar.gz)</span>
+              </a>
+              <div class="file-caption" id="file-caption-linux">cinemakom-v1.0.0-linux-x64.tar.gz</div>
+            </div>
+          </article>
+
+          <!-- 6. iOS (iPhone & iPad) -->
+          <article class="platform-card" data-category="mobile" data-os="ios">
+            <div class="card-top">
+              <div class="platform-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="6" y="2" width="12" height="20" rx="2" ry="2"/>
+                  <line x1="12" y1="18" x2="12.01" y2="18"/>
+                </svg>
+              </div>
+              <div class="card-badges">
+                <span class="recommended-tag" id="badge-ios" hidden data-i18n="tag_detected">Detected</span>
+                <span class="format-pill">IPA</span>
+              </div>
+            </div>
+
+            <h3 class="platform-name" data-i18n="plat_ios_title">iOS (iPhone &amp; iPad)</h3>
+            <p class="platform-meta" data-i18n="plat_ios_meta">iOS 14.0+ · Unsigned IPA · media_kit + libass</p>
+            <p class="platform-desc" data-i18n="plat_ios_desc">
+              Unsigned IPA package ready for sideloading via AltStore, SideStore, Sideloadly, or TrollStore with offline downloads and styled Arabic subtitles.
+            </p>
+
+            <div class="arch-selector">
+              <span class="static-chip" data-i18n="arch_ios_arm64">ARM64 Unsigned IPA (Sideload)</span>
+            </div>
+
+            <div class="card-footer">
+              <a href="https://github.com/hussainhacko-svg/cinemakom/releases/latest/download/cinemakom-v1.0.0-ios-unsigned.ipa"
+                 class="btn-download-card"
+                 id="dl-btn-ios"
+                 data-build="ios-unsigned"
+                 data-filename="cinemakom-v1.0.0-ios-unsigned.ipa">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span class="dl-btn-label" data-i18n="btn_dl_ios">Download Unsigned IPA (.ipa)</span>
+              </a>
+              <div class="file-caption" id="file-caption-ios">cinemakom-v1.0.0-ios-unsigned.ipa</div>
+            </div>
+          </article>
+
+          <!-- 7. Apple TV (tvOS) -->
+          <article class="platform-card" data-category="tv" data-os="apple-tv">
+            <div class="card-top">
+              <div class="platform-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="14" rx="3" ry="3"/>
+                  <path d="M8 21h8"/>
+                </svg>
+              </div>
+              <div class="card-badges">
+                <span class="format-pill">tvOS</span>
+              </div>
+            </div>
+
+            <h3 class="platform-name" data-i18n="plat_tvos_title">Apple TV (tvOS)</h3>
+            <p class="platform-meta" data-i18n="plat_tvos_meta">Apple TV 4K &amp; HD · Siri Remote · Custom flutter-tvos Engine</p>
+            <p class="platform-desc" data-i18n="plat_tvos_desc">
+              Built via `lib/main_tvos.dart` with federated tvOS plugins (`video_player_tvos`, `sqflite_tvos`) and the 10-foot Marquee TV interface.
+            </p>
+
+            <div class="arch-selector">
+              <span class="static-chip" data-i18n="arch_tvos_arm64">tvOS ARM64 (`flutter-tvos` / Xcode DeviceHub)</span>
+            </div>
+
+            <div class="card-footer">
+              <a href="https://github.com/hussainhacko-svg/cinemakom/releases"
+                 class="btn-download-card"
+                 id="dl-btn-tvos"
+                 data-build="tvos"
+                 data-filename="cinemakom-v1.0.0-tvos.ipa">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span class="dl-btn-label" data-i18n="btn_dl_tvos">Download / Build for Apple TV</span>
+              </a>
+              <div class="file-caption" id="file-caption-tvos">lib/main_tvos.dart · flutter-tvos</div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Multi-Form-Factor Interface Preview -->
+    <section id="preview" class="preview-section">
+      <div class="container">
+        <div class="section-header-block">
+          <div>
+            <p class="eyebrow" data-i18n="prev_eyebrow">ONE CODEBASE · TAILORED INTERFACES</p>
+            <h2 class="display-large" data-i18n="prev_title">DESIGNED FOR EVERY DISTANCE</h2>
+          </div>
+
+          <div class="segmented-control" role="tablist" aria-label="Form factor preview">
+            <button type="button" class="segment-btn active" data-preview="desktop" role="tab" aria-selected="true" data-i18n="prev_tab_desktop">Desktop (1200dp+)</button>
+            <button type="button" class="segment-btn" data-preview="mobile" role="tab" aria-selected="false" data-i18n="prev_tab_mobile">Phone (&lt;600dp)</button>
+            <button type="button" class="segment-btn" data-preview="tv" role="tab" aria-selected="false" data-i18n="prev_tab_tv">10-Foot TV UI (960×540)</button>
+          </div>
+        </div>
+
+        <div class="preview-viewport" id="previewViewport" data-mode="desktop">
+          <!-- Mode Description Banner -->
+          <div class="preview-caption-bar">
+            <span class="preview-mode-title" id="previewModeTitle" data-i18n="prev_mode_desktop_title">Extended Navigation Rail (232dp) + Two-Column Details</span>
+            <span class="preview-mode-spec" id="previewModeSpec" data-i18n="prev_mode_desktop_spec">Keyboard shortcuts · Mouse hover · Custom download folder</span>
+          </div>
+
+          <!-- Mocked Screen Inside Viewport -->
+          <div class="mock-device-frame">
+            <!-- Left Extended Rail (Desktop) / Bottom Bar (Mobile) / Top Tabs (TV) -->
+            <aside class="mock-nav">
+              <div class="mock-nav-brand">
+                <span class="mock-mark-mini">ك</span>
+                <span class="mock-brand-title">CINEMAKOM</span>
+              </div>
+              <div class="mock-nav-items">
+                <div class="mock-nav-item active">
+                  <span class="mock-nav-dot"></span>
+                  <span data-i18n="mock_tab_home">Home</span>
+                </div>
+                <div class="mock-nav-item">
+                  <span class="mock-nav-dot"></span>
+                  <span data-i18n="mock_tab_search">Search</span>
+                </div>
+                <div class="mock-nav-item">
+                  <span class="mock-nav-dot"></span>
+                  <span data-i18n="mock_tab_library">Library</span>
+                </div>
+                <div class="mock-nav-item">
+                  <span class="mock-nav-dot"></span>
+                  <span data-i18n="mock_tab_downloads">Downloads</span>
+                </div>
+                <div class="mock-nav-item">
+                  <span class="mock-nav-dot"></span>
+                  <span data-i18n="mock_tab_settings">Settings</span>
+                </div>
+              </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div class="mock-content">
+              <div class="mock-details-layout">
+                <div class="mock-poster-col">
+                  <div class="mock-poster-2x3">
+                    <span class="badge-4k">4K</span>
+                    <div class="mock-poster-art-label">2:3</div>
+                  </div>
+                </div>
+                <div class="mock-info-col">
+                  <span class="eyebrow" data-i18n="mock_series_eyebrow">SERIES · 1,179 EPISODES</span>
+                  <h3 class="mock-details-heading" data-i18n="mock_details_title">ONE PIECE</h3>
+                  <p class="mock-details-meta" data-i18n="mock_details_meta">1999 · Animation · Japanese · Arabic (Styled ASS)</p>
+                  <p class="mock-details-synopsis" data-i18n="mock_details_desc">
+                    Long seasons of 50+ episodes automatically split into 50-episode range chips so Cast &amp; Crew and More Like This stay within immediate reach.
+                  </p>
+                  <div class="mock-action-pills">
+                    <span class="mock-pill-primary" data-i18n="mock_resume_btn">▶ Resume · S1 E1089 · 14 min left</span>
+                    <span class="mock-pill-secondary" data-i18n="mock_fav_btn">In favorites</span>
+                    <span class="mock-pill-secondary" data-i18n="mock_dl_season_btn">Download season</span>
+                  </div>
+
+                  <!-- Range Chips ("1-50", "51-100", ..., "1051-1100") -->
+                  <div class="mock-range-chips">
+                    <span class="mock-chip">1–50</span>
+                    <span class="mock-chip">51–100</span>
+                    <span class="mock-chip">1001–1050</span>
+                    <span class="mock-chip active">1051–1100</span>
+                    <span class="mock-chip">1101–1150</span>
+                  </div>
+
+                  <!-- Episode Rows with Big Shoulders Display Numerals -->
+                  <div class="mock-episode-list">
+                    <div class="mock-ep-row">
+                      <span class="mock-ep-num watched">1088</span>
+                      <div class="mock-ep-text">
+                        <div class="mock-ep-title" data-i18n="mock_ep_1088">Episode 1088</div>
+                        <div class="mock-ep-len">24m · 1080p · Downloaded</div>
+                      </div>
+                      <span class="mock-ep-dl done">✓</span>
+                    </div>
+                    <div class="mock-ep-row current">
+                      <span class="mock-ep-num in-progress">1089</span>
+                      <div class="mock-ep-text">
+                        <div class="mock-ep-title" data-i18n="mock_ep_1089">Episode 1089</div>
+                        <div class="mock-ep-len">24m · 14 min left</div>
+                        <div class="progress-track"><div class="progress-fill" style="width: 45%"></div></div>
+                      </div>
+                      <span class="mock-ep-dl">↓</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Features Grid -->
+    <section id="features" class="features-section">
+      <div class="container">
+        <p class="eyebrow" data-i18n="feat_eyebrow">BUILT WITHOUT COMPROMISE</p>
+        <h2 class="display-large" data-i18n="feat_title">INSIDE CINEMAKOM</h2>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-num">01</div>
+            <h3 class="feature-heading" data-i18n="feat_1_title">4K 2160p &amp; Dual Engines</h3>
+            <p class="feature-body" data-i18n="feat_1_desc">
+              ExoPlayer on Android for butter-smooth 4K hardware decoding and 120Hz frame pacing; media_kit (libmpv) on Desktop and iOS with full styled ASS anime subtitles.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-num">02</div>
+            <h3 class="feature-heading" data-i18n="feat_2_title">Resilient Offline Downloads</h3>
+            <p class="feature-body" data-i18n="feat_2_desc">
+              Download individual movies, episodes, or entire seasons with quality &amp; size selection. Automatically refreshes expired signed CDN URLs (HTTP 403) and resumes cleanly.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-num">03</div>
+            <h3 class="feature-heading" data-i18n="feat_3_title">Zero Censorship · Zero Ratings</h3>
+            <p class="feature-body" data-i18n="feat_3_desc">
+              Always requests the unrestricted stream without scene skipping or parental filters. No star ratings, no fake view counts, and zero calls to telemetry or ad servers.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-num">04</div>
+            <h3 class="feature-heading" data-i18n="feat_4_title">Skip Intro &amp; Sprite Previews</h3>
+            <p class="feature-body" data-i18n="feat_4_desc">
+              Instant Skip Intro button during opening credits, sprite-sheet frame thumbnails while scrubbing the seek bar, and automatic 10-second Up Next episode countdown.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-num">05</div>
+            <h3 class="feature-heading" data-i18n="feat_5_title">True Bilingual RTL &amp; LTR</h3>
+            <p class="feature-body" data-i18n="feat_5_desc">
+              Script-aware typography pairing Big Shoulders Display &amp; IBM Plex Sans with Reem Kufi &amp; IBM Plex Sans Arabic, with bidirectional isolation for mixed metadata.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-num">06</div>
+            <h3 class="feature-heading" data-i18n="feat_6_title">Marquee &amp; Bordeaux Palettes</h3>
+            <p class="feature-body" data-i18n="feat_6_desc">
+              Switch live between the warm cocoa &amp; bulb-gold Marquee theme and the deep obsidian &amp; ruby Bordeaux Curtain theme—engineered for OLED screens with zero eye strain.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Installation & Build Commands Section -->
+    <section id="install-guide" class="install-section">
+      <div class="container">
+        <p class="eyebrow" data-i18n="inst_eyebrow">INSTALLATION &amp; VERIFICATION</p>
+        <h2 class="display-large" data-i18n="inst_title">QUICK SETUP GUIDE</h2>
+
+        <div class="install-grid">
+          <div class="install-card">
+            <div class="install-card-header">
+              <span class="install-platform-tag">Android &amp; Android TV</span>
+              <button type="button" class="copy-cmd-btn" data-copy="adb install -r cinemakom-v1.0.0-android-arm64-v8a.apk" data-i18n="btn_copy">Copy</button>
+            </div>
+            <p class="install-card-desc" data-i18n="inst_android_desc">
+              Open the downloaded APK on your phone, or sideload to your Android TV / Google TV over network ADB:
+            </p>
+            <pre class="code-block" dir="ltr"><code>adb connect &lt;tv-ip&gt;:5555
+adb install -r cinemakom-v1.0.0-android-arm64-v8a.apk</code></pre>
+          </div>
+
+          <div class="install-card">
+            <div class="install-card-header">
+              <span class="install-platform-tag">macOS</span>
+              <button type="button" class="copy-cmd-btn" data-copy="xattr -cr /Applications/Cinemakom.app" data-i18n="btn_copy">Copy</button>
+            </div>
+            <p class="install-card-desc" data-i18n="inst_macos_desc">
+              Open the `.dmg` and drag Cinemakom to Applications. Since builds are unsigned, clear macOS Gatekeeper quarantine once:
+            </p>
+            <pre class="code-block" dir="ltr"><code>xattr -cr /Applications/Cinemakom.app</code></pre>
+          </div>
+
+          <div class="install-card">
+            <div class="install-card-header">
+              <span class="install-platform-tag">Linux (x64)</span>
+              <button type="button" class="copy-cmd-btn" data-copy="tar -xzf cinemakom-v1.0.0-linux-x64.tar.gz && ./cinemakom/cinemakom" data-i18n="btn_copy">Copy</button>
+            </div>
+            <p class="install-card-desc" data-i18n="inst_linux_desc">
+              Ensure `mpv` / `libmpv` is installed (`sudo pacman -S mpv` or `sudo apt install libmpv2`), extract the bundle, and launch:
+            </p>
+            <pre class="code-block" dir="ltr"><code>tar -xzf cinemakom-v1.0.0-linux-x64.tar.gz
+./cinemakom/cinemakom</code></pre>
+          </div>
+
+          <div class="install-card">
+            <div class="install-card-header">
+              <span class="install-platform-tag">Build From Source</span>
+              <button type="button" class="copy-cmd-btn" data-copy="tool/build_all.sh" data-i18n="btn_copy">Copy</button>
+            </div>
+            <p class="install-card-desc" data-i18n="inst_source_desc">
+              In the `cinemakom` repository, run the unified release script to build split-ABI Android APKs and Linux tarballs into `dist/`:
+            </p>
+            <pre class="code-block" dir="ltr"><code>tool/build_all.sh -o ./releases</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="brand-lockup">
+          <svg class="brand-mark small" viewBox="0 0 100 100" aria-hidden="true">
+            <path fill="currentColor" fill-rule="evenodd" d="M18 24 H82 A6 6 0 0 1 88 30 V43.0 A7 7 0 0 0 88 57.0 V70 A6 6 0 0 1 82 76 H18 A6 6 0 0 1 12 70 V57.0 A7 7 0 0 0 12 43.0 V30 A6 6 0 0 1 18 24 Z M66.4 31.0 A1.6 1.6 0 1 0 69.6 31.0 A1.6 1.6 0 1 0 66.4 31.0 Z M66.4 37.5 A1.6 1.6 0 1 0 69.6 37.5 A1.6 1.6 0 1 0 66.4 37.5 Z M66.4 44.0 A1.6 1.6 0 1 0 69.6 44.0 A1.6 1.6 0 1 0 66.4 44.0 Z M66.4 50.5 A1.6 1.6 0 1 0 69.6 50.5 A1.6 1.6 0 1 0 66.4 50.5 Z M66.4 57.0 A1.6 1.6 0 1 0 69.6 57.0 A1.6 1.6 0 1 0 66.4 57.0 Z M66.4 63.5 A1.6 1.6 0 1 0 69.6 63.5 A1.6 1.6 0 1 0 66.4 63.5 Z M66.4 70.0 A1.6 1.6 0 1 0 69.6 70.0 A1.6 1.6 0 1 0 66.4 70.0 Z M19.47 64L22.98 58.16L53.69 58.16Q53.73 57.03 53 56.34Q52.27 55.65 49.93 55.65L25.27 55.65L31.2 49.81L31.21 49.81L45.18 36L45.18 44.72Q44.88 44.26 44.59 44.26Q44.3 44.26 44.05 44.51L38.58 49.81L49.93 49.81Q53.02 49.81 54.9 50.69Q56.78 51.56 57.76 53.03Q58.74 54.49 59.11 56.24Q59.49 57.99 59.51 59.76Q59.53 61.54 59.53 63.04Q59.53 63.54 59.11 63.75Q58.7 63.96 58.28 63.98Q57.86 64 57.86 64Z"/>
+          </svg>
+          <div class="brand-wordmark">
+            <span class="brand-latin" dir="ltr">CINEMAKOM</span>
+            <span class="brand-arabic" dir="rtl">سينماكم</span>
+          </div>
+        </div>
+        <p class="footer-note" data-i18n="footer_note">
+          App ID: io.github.sharon_xa.cinemakom · Marquee Design System · Flutter 3.47.9
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#downloads" class="footer-link" data-i18n="nav_downloads">Downloads</a>
+        <a href="https://github.com/hussainhacko-svg/cinemakom" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+        <a href="https://github.com/hussainhacko-svg/cinemakom/releases" target="_blank" rel="noopener noreferrer" class="footer-link" data-i18n="github_releases">Releases</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Download & Checksum Modal Dialog -->
+  <div class="modal-backdrop" id="infoModal" hidden aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Download Started</h3>
+        <button type="button" class="icon-circle-btn" id="closeModalBtn" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
